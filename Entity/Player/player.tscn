@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgglgu1i2ne6l"]
 
-[ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://icon.svg" id="1_mc1dd"]
+[ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="1_mc1dd"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ia1lp"]
 radius = 31.0

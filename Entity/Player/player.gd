@@ -46,6 +46,31 @@ var reached_jump_peak = false;
 const wall_jump_pushback = 100;
 const jump_power = -1000.0
 
+
+#game-mechanics
+const MAX_PLAYER_HEALTH = 1
+enum state {RUNNING, IDLE, JUMPING, DASHING, SHOOTING, DEAD}
+
+var player_state = state.IDLE
+signal hit
+
+
+func _update_animation() -> void:
+
+	match(player_state):
+		state.IDLE:
+			print("IDLE")
+		state.RUNNING:
+			print("Running")
+		state.DASHING:
+			print("Dashing")
+		state.JUMPING:
+			print("Jumping")
+		state.SHOOTING:
+			print("Shooting")
+		state.DEAD:
+			print("Dead")
+
 func _ready() -> void:
 	jump_buffer_timer = Timer.new();
 	add_child(jump_buffer_timer);
@@ -56,8 +81,18 @@ func _ready() -> void:
 	coyote_jump_timer.one_shot = true;
 
 func _physics_process(delta: float) -> void:
-	
+	if (Input.is_action_just_pressed("ui_accept")):
+		player_state = state.DEAD
+	if player_state != state.DEAD:
+		_moving(delta)
+	#_update_animation()
 
+func _moving(delta: float) -> void:
+	if is_on_floor():
+		if velocity.x == 0:
+			player_state = state.IDLE;
+		elif velocity.x <= 0 or velocity.x >= 0:
+			player_state = state.RUNNING;
 	if not is_on_floor() :
 		#if velocity.y > 0:
 			#reached_jump_peak = true;
@@ -67,15 +102,14 @@ func _physics_process(delta: float) -> void:
 		#else:
 		velocity.y += get_my_gravity(velocity) * delta
 	
-	if(velocity.y >= 0):
-		print(velocity.y)
+	
 	wall_sliding(delta)
 		
 	if is_on_floor():
 		reached_jump_peak = false
 		dash_counter = MAX_AIR_DASH;
 		if not coyote_jump_timer.is_stopped():
-			print("Stao")
+			
 			coyote_jump_timer.stop()
 	
 	
@@ -88,6 +122,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
 			velocity.y = JUMP_VELOCITY
+			player_state = state.JUMPING
 		else:
 			jump_buffer_timer.start(jump_buffer_time);
 			
@@ -123,9 +158,7 @@ func _physics_process(delta: float) -> void:
 	#DASH
 	dashing(direction, delta)
 	
-	
 		
-
 func dashing(direction, delta):
 	
 	if Input.is_action_just_pressed("dash") and direction and not is_dashing and dash_timer <= 0:
@@ -136,6 +169,7 @@ func dashing(direction, delta):
 			#dash_direction = direction
 			#dash_timer = dash_cooldown;
 		if is_on_floor() :
+		
 			is_dashing = true
 			dash_start_position = position.x
 			dash_counter = dash_counter - 1;
@@ -143,6 +177,7 @@ func dashing(direction, delta):
 			dash_timer = dash_cooldown;
 	
 	if is_dashing:
+		player_state = state.DASHING
 		var current_distance = abs(position.x - dash_start_position)
 		if(current_distance >= dash_max_distance or is_on_wall()):
 			is_dashing = false;

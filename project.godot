@@ -12,7 +12,17 @@ config_version=5
 
 config/name="GodotWildJam_83"
 config/features=PackedStringArray("4.4", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/icon.svg"
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "orange",
+"res://Entity/": "red",
+"res://Levels/": "green",
+"res://Singleton/": "blue",
+"res://UI/": "pink"
+}
 
 [input]
 
