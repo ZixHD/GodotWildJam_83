@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var player: CharacterBody2D = $"../../Player"
 
-const MAX_HEALTH = 1
+
 const PATROL_SPEED = 150.0
 @export_range(150, 500) var CHASE_SPEED
 enum state {IDLE, RUNNING, CONSUMED, ATTACKING, DEAD}
@@ -33,7 +33,7 @@ func _process(delta: float) -> void:
 	
 	if entity_state != state.DEAD:
 		_moving(delta)
-	_update_animation()
+	#_update_animation()
 	
 func _moving(delta: float) -> void:
 	if velocity.x == 0:
