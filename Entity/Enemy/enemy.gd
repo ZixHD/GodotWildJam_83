@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: CharacterBody2D = $"../Player"
 
 
 const PATROL_SPEED = 150.0

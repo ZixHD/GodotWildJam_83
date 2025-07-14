@@ -5,6 +5,7 @@ extends CharacterBody2D
 @onready var dust_particles_jump_right: GPUParticles2D = $DustParticlesJumpRight
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
 
 @export var jump_buffer_time: float = 0.1
 @export var coyote_time: float = 0.1
@@ -14,7 +15,7 @@ extends CharacterBody2D
 
 
 #DASH
-@export var dash_speed = 2000.0
+@export var dash_speed = 1300.0
 @export var dash_max_distance = 200.0
 @export var dash_curve: Curve
 @export var dash_cooldown = 1.0
@@ -54,7 +55,7 @@ const MAX_PLAYER_HEALTH = 1
 enum state {RUNNING, IDLE, JUMPING, DASHING, SHOOTING, DEAD}
 var was_in_air = false;
 var player_state = state.IDLE
-var idle_direction: int = 1
+var idle_direction: int = 0
 signal hit
 
 
@@ -62,14 +63,10 @@ func _update_animation() -> void:
 
 	match(player_state):
 		state.IDLE:
-			print("IDLE ", idle_direction)
-			
 			sprite_2d.flip_h = idle_direction
 			animation_player.play("idle")
 		state.RUNNING:
-			print("Running")
 			animation_player.play("run")
-			#player_state = state.IDLE
 		state.DASHING:
 			print("Dashing")
 		state.JUMPING:
@@ -88,17 +85,15 @@ func _ready() -> void:
 	add_child(coyote_jump_timer);
 	coyote_jump_timer.one_shot = true;
 	
-	var dust_timer = Timer.new()
-	dust_timer.wait_time = 1.0
-	dust_timer.one_shot = false
-	dust_timer.autostart = true
-	add_child(dust_timer)
-
-	dust_timer.timeout.connect(_spawn_dust)
+	
+	var running_dust_timer = Timer.new()
+	running_dust_timer.wait_time = 0.25
+	running_dust_timer.one_shot = false
+	running_dust_timer.autostart = true
+	add_child(running_dust_timer)
+	running_dust_timer.timeout.connect(_spawn_dust)
 
 func _physics_process(delta: float) -> void:
-	#if (Input.is_action_just_pressed("ui_accept")):
-		#player_state = state.DEAD
 	if player_state != state.DEAD:
 		_moving(delta)
 	_update_animation()
@@ -109,13 +104,8 @@ func _moving(delta: float) -> void:
 			player_state = state.IDLE;
 		elif velocity.x <= 0 or velocity.x >= 0:
 			player_state = state.RUNNING;
+			
 	if not is_on_floor() :
-		#if velocity.y > 0:
-			#reached_jump_peak = true;
-		#
-		#if(reached_jump_peak):
-			#velocity.y += FALL_GRAVITY * delta
-		#else:
 		velocity.y += get_my_gravity(velocity) * delta
 	
 	
@@ -128,17 +118,13 @@ func _moving(delta: float) -> void:
 			
 			coyote_jump_timer.stop()
 	
-	
-	
 	wall_jump(delta)	
 	
-	#if Input.is_action_just_released("jump") and velocity.y < 0:
-		#velocity.y = JUMP_VELOCITY / 4;
 	if(velocity.x != 0):
-		print("idle cnage: ", idle_direction)
 		idle_direction = velocity.x > 0
 		sprite_2d.flip_h = idle_direction
-	
+		dust_particles_running.position.x = 0  
+
 	
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor():
@@ -156,12 +142,7 @@ func _moving(delta: float) -> void:
 	elif is_on_floor() and was_in_air:
 		was_in_air = false
 		_spawn_jump_dust()
-		
-	#if (!is_on_floor() and !coyote_jump_timer.is_stopped() and velocity.y < 0):
-		#coyote_jump_timer.stop()
-		#velocity.y = JUMP_VELOCITY
-		
-		
+
 
 	var direction := Input.get_axis("left", "right")
 		
@@ -171,7 +152,6 @@ func _moving(delta: float) -> void:
 		else:
 			velocity.x = move_toward(velocity.x, direction * SPEED, SPEED)
 		
-		#velocity.x = direction * SPEED
 	else:
 		if(!is_on_floor()):
 			velocity.x = move_toward(velocity.x, 0, AIR_SPEED)
@@ -179,12 +159,13 @@ func _moving(delta: float) -> void:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 	var was_on_floor = is_on_floor();
 	
-	move_and_slide()
+
 	if(was_on_floor && !is_on_floor() and coyote_jump_timer.is_stopped()) :
 		coyote_jump_timer.start(coyote_time);
 		
 	#DASH
 	dashing(direction, delta)
+	move_and_slide()
 	
 func dashing(direction, delta):
 	
@@ -205,13 +186,15 @@ func dashing(direction, delta):
 	
 	if is_dashing:
 		player_state = state.DASHING
+		collision_shape_2d.disabled = true
 		var current_distance = abs(position.x - dash_start_position)
 		if(current_distance >= dash_max_distance or is_on_wall()):
 			is_dashing = false;
 		else:
 			velocity.x = dash_direction * dash_speed * dash_curve.sample(current_distance / dash_max_distance)
 			velocity.y = 0;
-			
+	else:
+		collision_shape_2d.disabled = false;
 	if(dash_timer > 0):
 		dash_timer -= delta;
 		
@@ -251,8 +234,9 @@ func get_my_gravity(my_velocity: Vector2):
 	return  GRAVITY
 
 func _spawn_dust() -> void:
-	dust_particles_running.restart()
-	dust_particles_running.emitting = true
+	if player_state == state.RUNNING and is_on_floor():
+		dust_particles_running.restart()
+		dust_particles_running.emitting = true
 
 func _spawn_jump_dust() -> void:
 	dust_particles_jump_left.restart()
