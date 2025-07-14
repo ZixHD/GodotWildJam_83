@@ -1,7 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://dgglgu1i2ne6l"]
+[gd_scene load_steps=24 format=3 uid="uid://dgglgu1i2ne6l"]
 
 [ext_resource type="Script" uid="uid://blyvjxigredbc" path="res://Entity/Player/player.gd" id="1_qb0yx"]
-[ext_resource type="Texture2D" uid="uid://ddgye2kwh7gh4" path="res://Assets/Detective/detective_anims1.png" id="2_qb0yx"]
+[ext_resource type="Texture2D" uid="uid://bcfh3dgfa68il" path="res://Entity/Player/detective_anims1.png" id="2_qb0yx"]
 [ext_resource type="Texture2D" uid="uid://dlqmypwi08xct" path="res://Assets/Particles/dust.png" id="3_qb0yx"]
 
 [sub_resource type="Curve" id="Curve_qb0yx"]
@@ -24,6 +24,37 @@ tracks/0/keys = {
 "values": [0, 1, 2, 0, 3]
 }
 
+[sub_resource type="Animation" id="Animation_jksyu"]
+length = 0.36
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.24),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [12, 13, 14]
+}
+
+[sub_resource type="Animation" id="Animation_qb0yx"]
+length = 0.64
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.17, 0.27, 0.37, 0.47, 0.57),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [15, 16, 17, 18, 19, 20, 21]
+}
+
 [sub_resource type="Animation" id="Animation_rawpq"]
 length = 0.62
 loop_mode = 1
@@ -40,9 +71,15 @@ tracks/0/keys = {
 "values": [4, 5, 6, 7, 8, 9, 10, 11]
 }
 
+[sub_resource type="Animation" id="Animation_ub5qt"]
+length = 0.001
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jksyu"]
 _data = {
+&"RESET": SubResource("Animation_ub5qt"),
 &"idle": SubResource("Animation_viyt1"),
+&"jump": SubResource("Animation_jksyu"),
+&"roll": SubResource("Animation_qb0yx"),
 &"run": SubResource("Animation_rawpq")
 }
 
@@ -156,9 +193,9 @@ dash_curve = SubResource("Curve_qb0yx")
 texture_filter = 1
 scale = Vector2(2, 2)
 texture = ExtResource("2_qb0yx")
-hframes = 4
-vframes = 3
-frame = 4
+hframes = 5
+vframes = 5
+frame = 21
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -174,7 +211,7 @@ metadata/_aseprite_wizard_config_ = {
 "slice": "",
 "source": "res://Assets/Detective/detective_anims1.aseprite"
 }
-metadata/_aseprite_wizard_source_file_hash_ = "7ac73d279cec35bf7c8e722c9ee26cc5"
+metadata/_aseprite_wizard_source_file_hash_ = "17633fc70506a584a0436b94e1fd9e9a"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
