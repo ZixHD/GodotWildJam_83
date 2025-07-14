@@ -15,7 +15,7 @@ extends CharacterBody2D
 
 
 #DASH
-@export var dash_speed = 1300.0
+@export var dash_speed = 500.0
 @export var dash_max_distance = 200.0
 @export var dash_curve: Curve
 @export var dash_cooldown = 1.0
@@ -56,6 +56,7 @@ enum state {RUNNING, IDLE, JUMPING, DASHING, SHOOTING, DEAD}
 var was_in_air = false;
 var player_state = state.IDLE
 var idle_direction: int = 0
+var jumped: bool = false;
 signal hit
 
 
@@ -67,10 +68,18 @@ func _update_animation() -> void:
 			animation_player.play("idle")
 		state.RUNNING:
 			animation_player.play("run")
+			await animation_player.animation_finished
 		state.DASHING:
+			animation_player.play("roll")
+			await animation_player.animation_finished
+			player_state = state.RUNNING
 			print("Dashing")
 		state.JUMPING:
-			print("Jumping")
+			if jumped:
+				animation_player.play("jump")
+				print("ovde")
+				jumped = false
+				#print("Jumping")
 		state.SHOOTING:
 			print("Shooting")
 		state.DEAD:
@@ -101,12 +110,15 @@ func _physics_process(delta: float) -> void:
 func _moving(delta: float) -> void:
 	if is_on_floor():
 		if velocity.x == 0:
-			player_state = state.IDLE;
+			if player_state != state.DASHING:
+				player_state = state.IDLE;
 		elif velocity.x <= 0 or velocity.x >= 0:
-			player_state = state.RUNNING;
+			if player_state != state.DASHING:
+				player_state = state.RUNNING;
 			
-	if not is_on_floor() :
+	elif not is_on_floor() :
 		velocity.y += get_my_gravity(velocity) * delta
+		
 	
 	
 	wall_sliding(delta)
@@ -139,6 +151,8 @@ func _moving(delta: float) -> void:
 		
 	if !is_on_floor() and !was_in_air:
 		was_in_air = true
+		player_state = state.JUMPING
+		jumped = true
 	elif is_on_floor() and was_in_air:
 		was_in_air = false
 		_spawn_jump_dust()
