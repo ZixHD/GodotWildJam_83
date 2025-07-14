@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://d0sdevhbm22tl" path="res://Levels/Level_1/level_1.gd" id="1_fh3s5"]
 [ext_resource type="PackedScene" uid="uid://dgglgu1i2ne6l" path="res://Entity/Player/player.tscn" id="2_ya7ph"]
 [ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="4_c1hxc"]
-[ext_resource type="PackedScene" uid="uid://ddps3cvirlba7" path="res://Entity/Enemy/enemy.tscn" id="4_wewmb"]
+[ext_resource type="PackedScene" uid="uid://dektuktqh6ru7" path="res://Entity/Elevator/elevator.tscn" id="4_fh3s5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_coq8p"]
 texture = ExtResource("4_c1hxc")
@@ -153,5 +153,4 @@ color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
 position = Vector2(238, 448)
 
-[node name="Enemy" parent="." instance=ExtResource("4_wewmb")]
-position = Vector2(941, 448)
+[node name="Elevator" parent="." instance=ExtResource("4_fh3s5")]
