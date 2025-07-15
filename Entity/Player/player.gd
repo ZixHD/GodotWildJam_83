@@ -6,6 +6,12 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var collision_shape_2d: CollisionShape2D = $CollisionShape2D
+@onready var point_light_2d: PointLight2D = $PointLight2D
+@onready var marker_2d_left: Marker2D = $Marker2DLeft
+@onready var marker_2d_right: Marker2D = $Marker2DRight
+@onready var attack_range: CollisionShape2D = $AttackRange/CollisionShape2D
+
+
 
 @export var jump_buffer_time: float = 0.1
 @export var coyote_time: float = 0.1
@@ -57,7 +63,10 @@ var was_in_air = false;
 var player_state = state.IDLE
 var idle_direction: int = 0
 var jumped: bool = false;
-signal hit
+var shooting: bool = false;
+
+signal attack_enemy
+signal got_hit_by_enemy
 
 
 func _update_animation() -> void:
@@ -79,9 +88,15 @@ func _update_animation() -> void:
 				animation_player.play("jump")
 				print("ovde")
 				jumped = false
-				#print("Jumping")
 		state.SHOOTING:
-			print("Shooting")
+			if shooting:
+				animation_player.play("camera")
+				await animation_player.animation_finished
+				player_state = state.RUNNING
+				shooting = false
+				point_light_2d.enabled = false
+				attack_range.disabled = true
+				
 		state.DEAD:
 			print("Dead")
 
@@ -101,19 +116,22 @@ func _ready() -> void:
 	running_dust_timer.autostart = true
 	add_child(running_dust_timer)
 	running_dust_timer.timeout.connect(_spawn_dust)
+	
+	self.connect("got_hit_by_enemy", Callable(self, "_on_hit"))
 
 func _physics_process(delta: float) -> void:
-	if player_state != state.DEAD:
+	if player_state != state.DEAD and player_state != state.SHOOTING:
 		_moving(delta)
+	_camera_shoot()
 	_update_animation()
 
 func _moving(delta: float) -> void:
 	if is_on_floor():
 		if velocity.x == 0:
-			if player_state != state.DASHING:
+			if player_state != state.DASHING and player_state != state.SHOOTING:
 				player_state = state.IDLE;
 		elif velocity.x <= 0 or velocity.x >= 0:
-			if player_state != state.DASHING:
+			if player_state != state.DASHING and player_state != state.SHOOTING:
 				player_state = state.RUNNING;
 			
 	elif not is_on_floor() :
@@ -127,7 +145,6 @@ func _moving(delta: float) -> void:
 		reached_jump_peak = false
 		dash_counter = MAX_AIR_DASH;
 		if not coyote_jump_timer.is_stopped():
-			
 			coyote_jump_timer.stop()
 	
 	wall_jump(delta)	
@@ -159,7 +176,7 @@ func _moving(delta: float) -> void:
 
 
 	var direction := Input.get_axis("left", "right")
-		
+	
 	if direction:
 		if(!is_on_floor()):
 			velocity.x = move_toward(velocity.x, direction * AIR_SPEED, AIR_SPEED)
@@ -257,3 +274,38 @@ func _spawn_jump_dust() -> void:
 	dust_particles_jump_left.emitting = true
 	dust_particles_jump_right.restart()
 	dust_particles_jump_right.emitting = true;
+
+func _camera_shoot() -> void:
+	if Input.is_action_just_pressed("click") and player_state != state.DASHING and player_state != state.JUMPING:
+		point_light_2d.enabled = true
+		attack_range.disabled = false;
+		if sprite_2d.is_flipped_h():
+			print("camera settings flipped: ", point_light_2d.rotation)
+			point_light_2d.global_position = marker_2d_right.global_position 
+			point_light_2d.rotation_degrees = 270.0
+			attack_range.global_position = point_light_2d.global_position 
+		elif !sprite_2d.is_flipped_h():
+			print("camera settings mot: ", point_light_2d.rotation)
+			point_light_2d.global_position = marker_2d_left.global_position 
+			point_light_2d.rotation_degrees = 90.0 
+			attack_range.global_position = point_light_2d.global_position 
+			
+		shooting = true
+		player_state = state.SHOOTING
+
+func _on_hit() -> void:
+	player_state = state.DEAD
+
+func _on_attack_range_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		if body.has_method("_on_hit"):
+			body._on_hit()
+		await get_tree().create_timer(0.25).timeout
+		var mat := sprite_2d.material as ShaderMaterial
+		print("goot")
+		mat.set_shader_parameter("apply", 1.0)
+
+func take_damage() -> void:
+	#queue_free()
+	player_state = state.DEAD
+	print("mrtav")

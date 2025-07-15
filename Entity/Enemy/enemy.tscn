@@ -1,23 +1,174 @@
-[gd_scene load_steps=4 format=3 uid="uid://ddps3cvirlba7"]
+[gd_scene load_steps=13 format=3 uid="uid://ddps3cvirlba7"]
 
-[ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="1_e7jyt"]
 [ext_resource type="Script" uid="uid://bw3lygayopvfn" path="res://Entity/Enemy/enemy.gd" id="1_opghj"]
+[ext_resource type="Texture2D" uid="uid://baghvfw8rdylu" path="res://Entity/Enemy/Merry1.png" id="2_opghj"]
+
+[sub_resource type="Shader" id="Shader_q533w"]
+code = "shader_type canvas_item;
+
+uniform float dissolve_amount : hint_range(0.0, 1.0);
+uniform sampler2D noise_texture;
+
+void fragment() {
+	vec4 tex_color = texture(TEXTURE, UV);
+	float noise = texture(noise_texture, UV).r;
+	if (noise < dissolve_amount) {
+		discard;
+	}
+	COLOR = tex_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_crevy"]
+shader = SubResource("Shader_q533w")
+shader_parameter/dissolve_amount = 0.0
+
+[sub_resource type="Animation" id="Animation_8bvhq"]
+length = 1.28
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.07, 0.14, 1.14, 1.21),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 4, 5, 6, 7]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.1413, 1.28),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
+}
+
+[sub_resource type="Animation" id="Animation_q533w"]
+length = 0.97
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.7, 0.77),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="Animation" id="Animation_crevy"]
+length = 0.34
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.17),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [8, 9]
+}
+
+[sub_resource type="Animation" id="Animation_opghj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("HitBox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kt7ua"]
+_data = {
+&"RESET": SubResource("Animation_opghj"),
+&"attack": SubResource("Animation_8bvhq"),
+&"idle": SubResource("Animation_q533w"),
+&"walk": SubResource("Animation_crevy")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opghj"]
-size = Vector2(126, 126)
+size = Vector2(74, 76)
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q533w"]
+size = Vector2(31, 41)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_opghj"]
+radius = 77.6209
+
+[node name="Enemy" type="CharacterBody2D" groups=["Enemy"]]
 script = ExtResource("1_opghj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_e7jyt")
+texture_filter = 1
+material = SubResource("ShaderMaterial_crevy")
+scale = Vector2(2, 2)
+texture = ExtResource("2_opghj")
+hframes = 4
+vframes = 3
+frame = 7
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Merry/Merry1.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "884fb5b9e5835d9c41f4f66b633225ff"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." groups=["Enemy"]]
+libraries = {
+&"": SubResource("AnimationLibrary_kt7ua")
+}
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -1)
+position = Vector2(-1, 3)
 shape = SubResource("RectangleShape2D_opghj")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 rotation = 1.5708
 target_position = Vector2(8.30516e-06, 190)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-56, 19)
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-55.5, 19.5)
+shape = SubResource("RectangleShape2D_q533w")
+disabled = true
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_opghj")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
