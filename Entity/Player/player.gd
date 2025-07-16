@@ -36,7 +36,7 @@ var dash_counter = 0;
 
 const SPEED = 450.0
 const AIR_SPEED = 350.0
-const JUMP_VELOCITY = -600.0
+const JUMP_VELOCITY = -650.0
 const GRAVITY = 1500.0;
 const FALL_GRAVITY = 2300;
 const MAX_AIR_DASH = 1;
@@ -143,7 +143,7 @@ func _moving(delta: float) -> void:
 		
 	
 	
-	wall_sliding(delta)
+	#wall_sliding(delta)
 		
 	if is_on_floor():
 		reached_jump_peak = false
@@ -212,7 +212,6 @@ func dashing(direction, delta):
 			#dash_direction = direction
 			#dash_timer = dash_cooldown;
 		if is_on_floor() :
-		
 			is_dashing = true
 			dash_start_position = position.x
 			dash_counter = dash_counter - 1;
@@ -220,6 +219,8 @@ func dashing(direction, delta):
 			dash_timer = dash_cooldown;
 	
 	if is_dashing:
+		
+		velocity.y += 980.0 * delta
 		player_state = state.DASHING
 		collision_shape_2d.disabled = true
 		var current_distance = abs(position.x - dash_start_position)
@@ -269,6 +270,7 @@ func get_my_gravity(my_velocity: Vector2):
 	return  GRAVITY
 
 func _spawn_dust() -> void:
+	
 	if player_state == state.RUNNING and is_on_floor():
 		dust_particles_running.restart()
 		dust_particles_running.emitting = true
@@ -315,8 +317,14 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 
 func take_damage() -> void:
 	#queue_free()
+	var explosion_scene = preload("res://Assets/Effects/Particles/explosion.tscn")
+	var explosion = explosion_scene.instantiate()
+	explosion.global_position = global_position
+	get_tree().current_scene.add_child(explosion)
 	player_state = state.DEAD
-	print("mrtav")
+	var particles: CPUParticles2D = explosion.get_node("CPUParticles2D")
+	particles.emitting = true
+	queue_free()
 
 func on_power_expired() -> void:
 	var mat := sprite_2d.material as ShaderMaterial

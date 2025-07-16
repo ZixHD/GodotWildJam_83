@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bdrlon7hukt35"
+path="res://.godot/imported/Chandelier.aseprite-28da5de763784fa41637bb63b28a8688.res"
+
+[deps]
+
+source_file="res://Assets/Map/Levels/Level_1/Objects/Chandelier.aseprite"
+dest_files=["res://.godot/imported/Chandelier.aseprite-28da5de763784fa41637bb63b28a8688.res"]
+
+[params]
+

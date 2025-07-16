@@ -1,19 +1,83 @@
-[gd_scene load_steps=3 format=3 uid="uid://dektuktqh6ru7"]
+[gd_scene load_steps=7 format=3 uid="uid://dektuktqh6ru7"]
 
 [ext_resource type="Script" uid="uid://43bhx4tm4tkq" path="res://Entity/Elevator/elevator.gd" id="1_1k7yo"]
+[ext_resource type="Texture2D" uid="uid://dgd1snlxlv2on" path="res://Entity/Elevator/elevator.png" id="2_de7kw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx0lj"]
-size = Vector2(106, 85)
+size = Vector2(105, 102)
+
+[sub_resource type="Animation" id="Animation_ux8cn"]
+length = 0.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_f73sr"]
+length = 0.7
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4q2bv"]
+_data = {
+&"door_open": SubResource("Animation_f73sr"),
+&"idle": SubResource("Animation_ux8cn")
+}
 
 [node name="Elevator" type="Area2D"]
 script = ExtResource("1_1k7yo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_de7kw")
+hframes = 3
+vframes = 3
+frame = 1
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Map/Levels/Level_1/Objects/elevator.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "ee7740b05e3bb3ba5247797a27121b24"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1042, 473.5)
+position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_vx0lj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4q2bv")
+}
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

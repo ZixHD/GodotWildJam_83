@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://qu2p240wxjpk"]
+[gd_scene load_steps=9 format=3 uid="uid://qu2p240wxjpk"]
 
 [ext_resource type="Texture2D" uid="uid://bfc6xmu4x2xel" path="res://Entity/Enemies/FireGhoul/Fire_Spirit.png" id="1_6y48s"]
 [ext_resource type="Script" uid="uid://dyaf6y62d3npp" path="res://Entity/Enemies/FireGhoul/fire_ghoul.gd" id="1_rc3ax"]
@@ -76,9 +76,6 @@ _data = {
 &"walk": SubResource("Animation_rc3ax")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rc3ax"]
-radius = 226.345
-
 [node name="FireGhoul" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource("1_rc3ax")
@@ -120,15 +117,7 @@ libraries = {
 rotation = 1.5708
 target_position = Vector2(1.01848e-05, 233)
 
-[node name="AttackRange" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_rc3ax")
-
 [node name="AttackTimer" type="Timer" parent="."]
 
 [node name="FireBallSpawn" type="Marker2D" parent="."]
 position = Vector2(-5, -20)
-
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

@@ -108,7 +108,7 @@ _data = {
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ia1lp"]
 radius = 21.0
-height = 90.0
+height = 58.0
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_qb0yx"]
 particles_animation = true
@@ -212,7 +212,7 @@ anim_speed_max = 1.0
 size = Vector2(67.5, 41)
 
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
-collision_mask = 2
+collision_mask = 3
 script = ExtResource("1_qb0yx")
 dash_curve = SubResource("Curve_qb0yx")
 
@@ -248,6 +248,7 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-7, 16)
 shape = SubResource("CapsuleShape2D_ia1lp")
 
 [node name="DustParticlesRunning" type="GPUParticles2D" parent="."]
@@ -294,6 +295,7 @@ position = Vector2(75, 0)
 position = Vector2(-75, -3.90798e-14)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
+enabled = false
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("4_viyt1")
@@ -307,5 +309,8 @@ shape = SubResource("RectangleShape2D_rawpq")
 disabled = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(1.5, 1.5)
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

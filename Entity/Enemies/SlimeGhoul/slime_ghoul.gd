@@ -52,7 +52,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if entity_state != state.ATTACKING and entity_state != state.DEAD and !in_range:
 		_moving(delta)
-	sprite_2d.flip_h = player.global_position.x > global_position.x
+	if player:
+		sprite_2d.flip_h = player.global_position.x > global_position.x
 	_attack()
 	_update_animation()
 	

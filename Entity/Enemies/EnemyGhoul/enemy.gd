@@ -61,8 +61,8 @@ func _moving(delta: float) -> void:
 		
 	if ray_cast_2d.is_colliding():
 		spotted_player = true
-	
-	sprite_2d.flip_h = player.global_position.x > global_position.x
+	if player:
+		sprite_2d.flip_h = player.global_position.x > global_position.x
 	if sprite_2d.is_flipped_h():
 		hit_box.global_position.x = self.global_position.x + 55.0
 	else:

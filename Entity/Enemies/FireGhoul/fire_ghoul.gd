@@ -4,7 +4,6 @@ extends CharacterBody2D
 @onready var player: CharacterBody2D = $"../../Player"
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var attack_range: CollisionShape2D = $AttackRange/CollisionShape2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var fire_ball_spawn: Marker2D = $FireBallSpawn
@@ -31,13 +30,10 @@ func _update_animation():
 		state.CONSUMED:
 			print("Consumed")
 		state.ATTACKING:
-			attack_range.disabled = true;
 			animation_player.play("attack")
 			await animation_player.animation_finished
 			entity_state = state.RUNNING
-			attack_range.disabled = false;
 			attacking = false;
-			print("ATTACKING")
 		state.DEAD:
 			print("DEAD")
 
@@ -53,7 +49,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if entity_state != state.ATTACKING and entity_state != state.DEAD and !in_range:
 		_moving(delta)
-	sprite_2d.flip_h = player.global_position.x > global_position.x
+	if player:
+		sprite_2d.flip_h = player.global_position.x > global_position.x
 	_attack()
 	_update_animation()
 	
@@ -67,6 +64,13 @@ func _moving(delta: float) -> void:
 		
 	if ray_cast_2d.is_colliding():
 		spotted_player = true
+		if !attacking:
+			print("In range")
+			in_range = true
+	else:
+			in_range = false
+
+		
 			
 	if(spotted_player):
 		var direction_to_player = sign(player.global_position.x - global_position.x)
@@ -82,18 +86,17 @@ func _attack() -> void:
 		get_tree().current_scene.add_child(fire_ball)
 		fire_ball.global_position = fire_ball_spawn.global_position
 		fire_ball.global_rotation = fire_ball_spawn.global_rotation
-		fire_ball.setup(player.global_position)
+		if player:
+			fire_ball.setup(player.global_position)
 		attacking = true
 		can_attack = false
 		
 	
 	
 func _attack_check() -> void:
-	print("ovdfe1213")
 	can_attack = true
 	
 func _on_hit() -> void:
-	print("wooooo")
 	var explosion_scene = preload("res://Assets/Effects/Particles/explosion.tscn")
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
@@ -103,14 +106,3 @@ func _on_hit() -> void:
 	particles.emitting = true
 	#play_explosion, wait 0.25 sec, then delete
 	queue_free()
-
-
-func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and !attacking:
-		print("In range")
-		in_range = true
-
-
-func _on_attack_range_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		in_range = false

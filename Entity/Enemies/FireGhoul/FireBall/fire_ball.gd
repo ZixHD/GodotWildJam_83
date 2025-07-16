@@ -5,7 +5,7 @@ extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 
 @export var speed = 300.0
-const RANGE = 200
+const RANGE = 1000
 var velocity: Vector2 = Vector2.ZERO
 var travelled_distance = 0
 
@@ -18,7 +18,9 @@ func _process(delta: float) -> void:
 		
 	
 func setup(target_position: Vector2):
-	var direction = (target_position - global_position).rotated(rotation).normalized()
+	var direction = target_position - global_position
+	direction.y = 0
+	direction = direction.normalized()
 	velocity = direction * speed
 	rotation = direction.angle()
 	sprite_2d.flip_h = true

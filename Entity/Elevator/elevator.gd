@@ -5,7 +5,6 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		print("stigao")
 #		play the animation of the elevator closing
 #		on animation_finished emit the signal and call GameManager.next_scene
 		var running_dust_timer = Timer.new()

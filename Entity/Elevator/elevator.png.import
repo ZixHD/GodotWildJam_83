@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dph8nxejr3e0v"
-path="res://.godot/imported/level1.png-7741aa4b61b601c8cc4baeb37ef13088.ctex"
+uid="uid://dgd1snlxlv2on"
+path="res://.godot/imported/elevator.png-23715287628c4f68ad6d2c4ac6f58c4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Map/level1.png"
-dest_files=["res://.godot/imported/level1.png-7741aa4b61b601c8cc4baeb37ef13088.ctex"]
+source_file="res://Entity/Elevator/elevator.png"
+dest_files=["res://.godot/imported/elevator.png-23715287628c4f68ad6d2c4ac6f58c4c.ctex"]
 
 [params]
 
