@@ -65,9 +65,8 @@ var player_state = state.IDLE
 var idle_direction: int = 0
 var jumped: bool = false;
 var shooting: bool = false;
+var level_end_flag: bool = false;
 
-signal attack_enemy
-signal got_hit_by_enemy
 
 
 func _update_animation() -> void:
@@ -101,6 +100,7 @@ func _update_animation() -> void:
 			print("")
 
 func _ready() -> void:
+	
 	jump_buffer_timer = Timer.new();
 	add_child(jump_buffer_timer);
 	jump_buffer_timer.one_shot = true;
@@ -117,16 +117,21 @@ func _ready() -> void:
 	add_child(running_dust_timer)
 	running_dust_timer.timeout.connect(_spawn_dust)
 	
-	self.connect("got_hit_by_enemy", Callable(self, "_on_hit"))
+	
 	power_up_timer.wait_time = GameManager.POWER_UP_TIMER
 	power_up_timer.one_shot = true
 	power_up_timer.autostart = false;
 	power_up_timer.timeout.connect(on_power_expired)
 
+func on_level_end() -> void:
+	level_end_flag = true
+	player_state = state.IDLE
+	
 func _physics_process(delta: float) -> void:
-	if player_state != state.DEAD and player_state != state.SHOOTING:
-		_moving(delta)
-	_camera_shoot()
+	if !level_end_flag:
+		if player_state != state.DEAD and player_state != state.SHOOTING:
+			_moving(delta)
+		_camera_shoot()
 	_update_animation()
 
 func _moving(delta: float) -> void:

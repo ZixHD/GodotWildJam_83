@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bsk34sbnictp6"]
+[gd_scene load_steps=8 format=3 uid="uid://bsk34sbnictp6"]
 
 [ext_resource type="Script" uid="uid://bje12laxjvmac" path="res://Entity/Enemies/SlimeGhoul/slime_ghoul.gd" id="1_uwv8c"]
 [ext_resource type="Texture2D" uid="uid://d3dsa408cf8cd" path="res://Entity/Enemies/SlimeGhoul/Slime.png" id="1_x68yn"]
@@ -60,9 +60,6 @@ _data = {
 &"walk": SubResource("Animation_hooum")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hooum"]
-radius = 255.008
-
 [node name="SlimeGhoul" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 script = ExtResource("1_uwv8c")
@@ -100,11 +97,6 @@ libraries = {
 &"": SubResource("AnimationLibrary_yl3pt")
 }
 
-[node name="AttackRange" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_hooum")
-
 [node name="SlimeBallSpawn" type="Marker2D" parent="."]
 position = Vector2(-34, -15)
 
@@ -113,6 +105,3 @@ position = Vector2(-34, -15)
 [node name="RayCast2D" type="RayCast2D" parent="."]
 rotation = 1.5708
 target_position = Vector2(-0.999989, 256)
-
-[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
-[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

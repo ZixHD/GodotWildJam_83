@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var attack_range: CollisionShape2D = $AttackRange/CollisionShape2D
 @onready var attack_timer: Timer = $AttackTimer
 @onready var player: CharacterBody2D = $"../../Player"
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
@@ -31,11 +30,9 @@ func _update_animation():
 		state.CONSUMED:
 			print("Consumed")
 		state.ATTACKING:
-			#attack_range.disabled = true;
 			animation_player.play("attack")
 			await animation_player.animation_finished
 			entity_state = state.RUNNING
-			#attack_range.disabled = false;
 			attacking = false;
 		state.DEAD:
 			print("DEAD")

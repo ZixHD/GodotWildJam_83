@@ -119,7 +119,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_opghj"]
-size = Vector2(74, 76)
+size = Vector2(74, 73)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q533w"]
 size = Vector2(31, 41)
@@ -162,7 +162,6 @@ libraries = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 3)
 shape = SubResource("RectangleShape2D_opghj")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
