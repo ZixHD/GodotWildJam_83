@@ -10,6 +10,7 @@ extends CharacterBody2D
 @onready var marker_2d_left: Marker2D = $Marker2DLeft
 @onready var marker_2d_right: Marker2D = $Marker2DRight
 @onready var attack_range: CollisionShape2D = $AttackRange/CollisionShape2D
+@onready var power_up_timer: Timer = $PowerUpTimer
 
 
 
@@ -118,6 +119,10 @@ func _ready() -> void:
 	running_dust_timer.timeout.connect(_spawn_dust)
 	
 	self.connect("got_hit_by_enemy", Callable(self, "_on_hit"))
+	power_up_timer.wait_time = 2.0
+	power_up_timer.one_shot = true
+	power_up_timer.autostart = false;
+	power_up_timer.timeout.connect(on_power_expired)
 
 func _physics_process(delta: float) -> void:
 	if player_state != state.DEAD and player_state != state.SHOOTING:
@@ -304,8 +309,15 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 		var mat := sprite_2d.material as ShaderMaterial
 		print("goot")
 		mat.set_shader_parameter("apply", 1.0)
+		power_up_timer.start()
+		
 
 func take_damage() -> void:
 	#queue_free()
 	player_state = state.DEAD
 	print("mrtav")
+
+func on_power_expired() -> void:
+	var mat := sprite_2d.material as ShaderMaterial
+	print("goot")
+	mat.set_shader_parameter("apply", 0.0)

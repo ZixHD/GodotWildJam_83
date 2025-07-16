@@ -4,6 +4,7 @@ extends Node
 @export_range(0, 1) var player_health
 const LEVEL_1 = preload("res://Levels/Level_1/level_1.tscn")
 const TRANSITION_SCREEN = preload("res://Levels/TransitionScreen/transition_screen.tscn")
+const POWER_UP_TIMER = 10.0
 #player_healh
 var score_multiplier = 0
 var level_timer = 0

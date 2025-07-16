@@ -304,4 +304,6 @@ position = Vector2(-75, 0)
 shape = SubResource("RectangleShape2D_rawpq")
 disabled = true
 
+[node name="PowerUpTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

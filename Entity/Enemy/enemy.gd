@@ -16,6 +16,8 @@ var entity_state = state.IDLE
 var start_position: Vector2i = Vector2i.ZERO
 var spotted_player: bool = false
 var in_range: bool = false;
+var attacking: bool = false;
+
 signal attack_player
 
 
@@ -28,10 +30,12 @@ func _update_animation():
 		state.CONSUMED:
 			print("Consumed")
 		state.ATTACKING:
+			attack_range.disabled = true;
 			animation_player.play("attack")
-#			ovde je ono sto sam pitao chodu za enemy AI
 			await animation_player.animation_finished
 			entity_state = state.RUNNING
+			attack_range.disabled = false;
+			attacking = false;
 			print("ATTACKING")
 		state.DEAD:
 			print("DEAD")
@@ -74,14 +78,14 @@ func _on_hit() -> void:
 	queue_free()
 
 func _attack() -> void:
-	if in_range:
+	if in_range and !attacking:
 		entity_state = state.ATTACKING
+		attacking = true
 	
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and !attacking:
 		print("In range")
 		in_range = true
-
 
 func _on_hit_box_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -89,7 +93,9 @@ func _on_hit_box_body_entered(body: Node2D) -> void:
 			print("udaram")
 			body.take_damage()
 
-
 func _on_attack_range_body_exited(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		in_range = false
+
+func _leap_to_player() -> void:
+	self.global_position = player.global_position - Vector2(-100, 0)
