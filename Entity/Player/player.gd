@@ -83,11 +83,10 @@ func _update_animation() -> void:
 			animation_player.play("roll")
 			await animation_player.animation_finished
 			player_state = state.RUNNING
-			print("Dashing")
+		
 		state.JUMPING:
 			if jumped:
 				animation_player.play("jump")
-				print("ovde")
 				jumped = false
 		state.SHOOTING:
 			if shooting:
@@ -99,7 +98,7 @@ func _update_animation() -> void:
 				attack_range.disabled = true
 				
 		state.DEAD:
-			print("Dead")
+			print("")
 
 func _ready() -> void:
 	jump_buffer_timer = Timer.new();
@@ -119,7 +118,7 @@ func _ready() -> void:
 	running_dust_timer.timeout.connect(_spawn_dust)
 	
 	self.connect("got_hit_by_enemy", Callable(self, "_on_hit"))
-	power_up_timer.wait_time = 2.0
+	power_up_timer.wait_time = GameManager.POWER_UP_TIMER
 	power_up_timer.one_shot = true
 	power_up_timer.autostart = false;
 	power_up_timer.timeout.connect(on_power_expired)
@@ -302,7 +301,9 @@ func _on_hit() -> void:
 	player_state = state.DEAD
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
+	print("kao im1a")
 	if body.is_in_group("Enemy"):
+		print("kao im2a")
 		if body.has_method("_on_hit"):
 			body._on_hit()
 		await get_tree().create_timer(0.25).timeout

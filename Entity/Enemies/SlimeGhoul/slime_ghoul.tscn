@@ -1,0 +1,118 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsk34sbnictp6"]
+
+[ext_resource type="Script" uid="uid://bje12laxjvmac" path="res://Entity/Enemies/SlimeGhoul/slime_ghoul.gd" id="1_uwv8c"]
+[ext_resource type="Texture2D" uid="uid://d3dsa408cf8cd" path="res://Entity/Enemies/SlimeGhoul/Slime.png" id="1_x68yn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x68yn"]
+size = Vector2(51, 45)
+
+[sub_resource type="Animation" id="Animation_uwv8c"]
+length = 1.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 0]
+}
+
+[sub_resource type="Animation" id="Animation_hooum"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [3, 4, 3]
+}
+
+[sub_resource type="Animation" id="Animation_a3ovh"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.15, 0.3, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yl3pt"]
+_data = {
+&"attack": SubResource("Animation_a3ovh"),
+&"idle": SubResource("Animation_uwv8c"),
+&"walk": SubResource("Animation_hooum")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hooum"]
+radius = 255.008
+
+[node name="SlimeGhoul" type="CharacterBody2D" groups=["Enemy"]]
+collision_layer = 2
+script = ExtResource("1_uwv8c")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("1_x68yn")
+hframes = 3
+vframes = 3
+frame = 5
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Entities/Enemies/Slime/Slime.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "05a16a958056ea0c18c0e07773576224"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 3.5)
+shape = SubResource("RectangleShape2D_x68yn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_yl3pt")
+}
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CircleShape2D_hooum")
+
+[node name="SlimeBallSpawn" type="Marker2D" parent="."]
+position = Vector2(-34, -15)
+
+[node name="AttackTimer" type="Timer" parent="."]
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = 1.5708
+target_position = Vector2(-0.999989, 256)
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

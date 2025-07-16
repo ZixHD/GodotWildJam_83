@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bxld08vhh24qo"
+path="res://.godot/imported/detective_anims1.aseprite-736d1dac3407f5fdbe3bcbde194a8e03.res"
+
+[deps]
+
+source_file="res://Assets/Entities/Detective/detective_anims1.aseprite"
+dest_files=["res://.godot/imported/detective_anims1.aseprite-736d1dac3407f5fdbe3bcbde194a8e03.res"]
+
+[params]
+

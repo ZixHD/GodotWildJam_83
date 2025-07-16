@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://dvlavwr7ko2hb"]
+
+[ext_resource type="Texture2D" uid="uid://dy6nw0kgr7pbc" path="res://Entity/Enemies/FireGhoul/FireBall/fireball.png" id="1_3ine0"]
+[ext_resource type="Script" uid="uid://dphmdynwcswu" path="res://Entity/Enemies/FireGhoul/FireBall/fire_ball.gd" id="1_k5pp6"]
+
+[sub_resource type="Animation" id="Animation_k5pp6"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dlplr"]
+_data = {
+&"default": SubResource("Animation_k5pp6")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ine0"]
+radius = 18.1108
+
+[node name="FireBall" type="Area2D"]
+z_index = 1
+collision_layer = 2
+script = ExtResource("1_k5pp6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, 1)
+scale = Vector2(4, 4)
+texture = ExtResource("1_3ine0")
+hframes = 3
+vframes = 2
+metadata/_aseprite_wizard_interface_config_ = {
+"pending_changes": {}
+}
+metadata/_aseprite_wizard_config_ = {
+"i_mode": -1,
+"keep_anim_length": false,
+"layers": [],
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"player": "AnimationPlayer",
+"slice": "",
+"source": "res://Assets/Entities/Enemies/Fire_Ghoust/fireball.aseprite"
+}
+metadata/_aseprite_wizard_source_file_hash_ = "28ce98c661c883b721d551d04bf4919a"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_dlplr")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(13, 2)
+shape = SubResource("CircleShape2D_3ine0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

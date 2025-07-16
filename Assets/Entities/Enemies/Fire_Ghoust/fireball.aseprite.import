@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://d20h7g1pocq55"
+path="res://.godot/imported/fireball.aseprite-9077f41569bddf3856ebb703ac28da66.res"
+
+[deps]
+
+source_file="res://Assets/Entities/Enemies/Fire_Ghoust/fireball.aseprite"
+dest_files=["res://.godot/imported/fireball.aseprite-9077f41569bddf3856ebb703ac28da66.res"]
+
+[params]
+

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddgye2kwh7gh4"
-path="res://.godot/imported/detective_anims1.png-2e7957f0d5f49aa2b455cafdfde82bf8.ctex"
+uid="uid://bfc6xmu4x2xel"
+path="res://.godot/imported/Fire_Spirit.png-bef93f3f70249e63809806d26d9d4558.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Detective/detective_anims1.png"
-dest_files=["res://.godot/imported/detective_anims1.png-2e7957f0d5f49aa2b455cafdfde82bf8.ctex"]
+source_file="res://Entity/Enemies/FireGhoul/Fire_Spirit.png"
+dest_files=["res://.godot/imported/Fire_Spirit.png-bef93f3f70249e63809806d26d9d4558.ctex"]
 
 [params]
 

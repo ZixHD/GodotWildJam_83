@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bxyb0l1howls4"
+path="res://.godot/imported/Merry1.aseprite-84f7b1c2607aea2f0c620c7e3df2b437.res"
+
+[deps]
+
+source_file="res://Assets/Entities/Enemies/Merry/Merry1.aseprite"
+dest_files=["res://.godot/imported/Merry1.aseprite-84f7b1c2607aea2f0c620c7e3df2b437.res"]
+
+[params]
+

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b55ycs0qaa1a"
-path="res://.godot/imported/light.png-2a4e6657d509348a426985c91bb2054d.ctex"
+uid="uid://cdubu6hc7p5c1"
+path="res://.godot/imported/slime_attack_trail.png-7d99a2c34187770418a0188922e1894a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Light/light.png"
-dest_files=["res://.godot/imported/light.png-2a4e6657d509348a426985c91bb2054d.ctex"]
+source_file="res://Assets/Entities/Enemies/Slime/slime_attack_trail.png"
+dest_files=["res://.godot/imported/slime_attack_trail.png-7d99a2c34187770418a0188922e1894a.ctex"]
 
 [params]
 
