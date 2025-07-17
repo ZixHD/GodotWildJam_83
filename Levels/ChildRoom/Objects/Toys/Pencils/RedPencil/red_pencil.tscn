@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcwy6jkhej4jd"]
+
+[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_h4lyf"]
+[ext_resource type="Texture2D" uid="uid://c5yx118kgsy5y" path="res://Assets/Map/ChildRoom/toys/bojcaCrvena.png" id="1_sbofw"]
+
+[node name="RedPencil" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sbofw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_h4lyf")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

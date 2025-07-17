@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpjyan68v73uf"]
+
+[ext_resource type="Texture2D" uid="uid://bt0ohkn05fn8c" path="res://Assets/Map/ChildRoom/toys/bojcaLjubicasta.png" id="1_o83r6"]
+[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_xo7ok"]
+
+[node name="PurplePencil" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_o83r6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_xo7ok")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

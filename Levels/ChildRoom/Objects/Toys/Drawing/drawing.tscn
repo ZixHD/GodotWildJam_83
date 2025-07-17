@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbh2vx4tmggjg"]
+
+[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_jortj"]
+[ext_resource type="Texture2D" uid="uid://w8344owmvb6a" path="res://Assets/Map/ChildRoom/toys/crtez1.png" id="1_syxds"]
+
+[node name="Drawing" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_syxds")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_jortj")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

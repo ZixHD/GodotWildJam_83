@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://udlcvuvb4ve1"]
+
+[ext_resource type="Script" uid="uid://bf3ojs2efw271" path="res://Objects/ChildRoom/Furniture/Window/window.gd" id="1_hjewq"]
+[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Utils/interaction/interaction_area/interaction_area.tscn" id="2_hjewq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nfq5s"]
+size = Vector2(78, 93)
+
+[node name="Window" type="Node2D"]
+script = ExtResource("1_hjewq")
+
+[node name="InteractionArea" parent="." instance=ExtResource("2_hjewq")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+position = Vector2(1, 14)
+shape = SubResource("RectangleShape2D_nfq5s")
