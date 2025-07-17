@@ -97,6 +97,7 @@ func _update_animation() -> void:
 				attack_range.disabled = true
 				
 		state.DEAD:
+			GameManager.load_retry_scene()
 			print("")
 
 func _ready() -> void:
@@ -318,7 +319,6 @@ func _on_attack_range_body_entered(body: Node2D) -> void:
 		print("goot")
 		mat.set_shader_parameter("apply", 1.0)
 		power_up_timer.start()
-		
 
 func take_damage() -> void:
 	#queue_free()

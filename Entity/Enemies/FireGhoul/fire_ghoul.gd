@@ -69,7 +69,6 @@ func _moving(delta: float) -> void:
 	if ray_cast_2d.is_colliding():
 		spotted_player = true
 		if !attacking:
-			print("In range")
 			in_range = true
 	else:
 		in_range = false
