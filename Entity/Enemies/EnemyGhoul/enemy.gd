@@ -70,7 +70,7 @@ func _moving(delta: float) -> void:
 	
 	velocity.y += 980.0 * delta
 	
-	if(spotted_player):
+	if spotted_player and player:
 		var direction_to_player = sign(player.global_position.x - global_position.x)
 		velocity.x = direction_to_player * PATROL_SPEED
 		move_and_slide()

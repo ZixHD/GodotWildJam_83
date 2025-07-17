@@ -14,11 +14,23 @@ func _on_body_entered(body: Node2D) -> void:
 		animation_player.play("door_open")
 		player.global_position = player_position.global_position
 		var running_dust_timer = Timer.new()
-		running_dust_timer.wait_time = 5
+		running_dust_timer.wait_time = 2
 		running_dust_timer.one_shot = true
 		running_dust_timer.autostart = true
 		add_child(running_dust_timer)
-		running_dust_timer.timeout.connect(_transition)
+		running_dust_timer.start()
+		running_dust_timer.timeout.connect(_close_door)
 
+func _close_door() -> void:
+	animation_player.play_backwards("door_open")
+	var running_dust_timer = Timer.new()
+	running_dust_timer.wait_time = 1.2
+	running_dust_timer.one_shot = true
+	running_dust_timer.autostart = true
+	add_child(running_dust_timer)
+	running_dust_timer.start()
+	running_dust_timer.timeout.connect(_transition)
+
+	
 func _transition() -> void:
 	GameManager.load_transition()

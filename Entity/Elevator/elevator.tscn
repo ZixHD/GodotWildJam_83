@@ -52,6 +52,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_de7kw")
 hframes = 3
 vframes = 3
+frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

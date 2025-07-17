@@ -78,6 +78,7 @@ _data = {
 
 [node name="FireGhoul" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_rc3ax")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

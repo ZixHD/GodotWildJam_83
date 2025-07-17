@@ -51,9 +51,10 @@ func _process(delta: float) -> void:
 		_moving(delta)
 	if player:
 		sprite_2d.flip_h = player.global_position.x > global_position.x
+		
+	_in_range_check()
 	_attack()
 	_update_animation()
-	
 
 func _moving(delta: float) -> void:
 	
@@ -62,10 +63,9 @@ func _moving(delta: float) -> void:
 	elif velocity.x >= 0 or velocity.x <= 0:
 		entity_state = state.RUNNING
 		
-	if ray_cast_2d.is_colliding():
-		spotted_player = true
-			
-	if(spotted_player):
+
+	velocity.y += 980.0 * delta
+	if spotted_player and player:
 		var direction_to_player = sign(player.global_position.x - global_position.x)
 		velocity.x = direction_to_player * PATROL_SPEED
 		move_and_slide()
@@ -79,18 +79,26 @@ func _attack() -> void:
 		get_tree().current_scene.add_child(slime_ball)
 		slime_ball.global_position = slime_ball_spawn.global_position
 		slime_ball.global_rotation = slime_ball_spawn.global_rotation
-		slime_ball.setup(player.global_position)
+		if player:
+			slime_ball.setup(player.global_position, slime_ball_spawn.global_position)
 		attacking = true
 		can_attack = false
 		
-	
-	
+		
+func _in_range_check() -> void:
+	if ray_cast_2d.is_colliding():
+		spotted_player = true
+		if !attacking:
+			print("In range")
+			in_range = true
+	else:
+		print("nije vise u range")
+		in_range = false
+		
 func _attack_check() -> void:
-	print("ovdfe1213")
 	can_attack = true
 	
 func _on_hit() -> void:
-	print("wooooo")
 	var explosion_scene = preload("res://Assets/Effects/Particles/explosion.tscn")
 	var explosion = explosion_scene.instantiate()
 	explosion.global_position = global_position
@@ -100,14 +108,3 @@ func _on_hit() -> void:
 	particles.emitting = true
 	#play_explosion, wait 0.25 sec, then delete
 	queue_free()
-
-
-func _on_attack_range_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player") and !attacking:
-		print("In range")
-		in_range = true
-
-
-func _on_attack_range_body_exited(body: Node2D) -> void:
-	if body.is_in_group("Player"):
-		in_range = false

@@ -51,9 +51,12 @@ func _process(delta: float) -> void:
 		_moving(delta)
 	if player:
 		sprite_2d.flip_h = player.global_position.x > global_position.x
+		
+	_in_range_check()
 	_attack()
 	_update_animation()
 	
+
 
 func _moving(delta: float) -> void:
 	
@@ -61,18 +64,19 @@ func _moving(delta: float) -> void:
 		entity_state = state.IDLE
 	elif velocity.x >= 0 or velocity.x <= 0:
 		entity_state = state.RUNNING
-		
+	
+	velocity.y += 980.0 * delta	
 	if ray_cast_2d.is_colliding():
 		spotted_player = true
 		if !attacking:
 			print("In range")
 			in_range = true
 	else:
-			in_range = false
+		in_range = false
 
 		
 			
-	if(spotted_player):
+	if spotted_player and player:
 		var direction_to_player = sign(player.global_position.x - global_position.x)
 		velocity.x = direction_to_player * PATROL_SPEED
 		move_and_slide()
@@ -93,6 +97,16 @@ func _attack() -> void:
 		
 	
 	
+func _in_range_check() -> void:
+	if ray_cast_2d.is_colliding():
+		spotted_player = true
+		if !attacking:
+			print("In range")
+			in_range = true
+	else:
+		print("nije vise u range")
+		in_range = false
+		
 func _attack_check() -> void:
 	can_attack = true
 	

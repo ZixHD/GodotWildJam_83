@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dwmvqdqsfjqbd"]
+[gd_scene load_steps=7 format=3 uid="uid://dwmvqdqsfjqbd"]
 
 [ext_resource type="Script" uid="uid://coactbi68j43g" path="res://Entity/Enemies/SlimeGhoul/SlimeBall/slime_ball.gd" id="1_13132"]
 [ext_resource type="Texture2D" uid="uid://cbx76o1lpwauu" path="res://Entity/Enemies/SlimeGhoul/SlimeBall/Slime_Ball.png" id="1_gvkh6"]
+[ext_resource type="Texture2D" uid="uid://cdubu6hc7p5c1" path="res://Assets/Entities/Enemies/Slime/slime_attack_trail.png" id="3_ox1eb"]
 
 [sub_resource type="Animation" id="Animation_13132"]
 length = 0.51
@@ -31,6 +32,27 @@ radius = 20.0
 collision_layer = 2
 script = ExtResource("1_13132")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ox1eb")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_gvkh6")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 10
+texture = ExtResource("3_ox1eb")
+lifetime = 0.21
+one_shot = true
+spread = 0.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 100.0
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(4, 4)
@@ -53,13 +75,5 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Assets/Entities/Enemies/Slime/Slime_Ball.aseprite"
 }
 metadata/_aseprite_wizard_source_file_hash_ = "af57f601fa5516dfb98bd52246de23f2"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_ox1eb")
-}
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_gvkh6")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

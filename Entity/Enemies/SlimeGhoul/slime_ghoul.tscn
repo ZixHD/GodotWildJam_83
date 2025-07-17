@@ -62,6 +62,7 @@ _data = {
 
 [node name="SlimeGhoul" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_uwv8c")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
