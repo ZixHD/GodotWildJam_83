@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3akq11gjbfl3"
-path="res://.godot/imported/leve2.png-4916469cdd8d61c10badb710901b63b5.ctex"
+uid="uid://c112njgbf1b63"
+path="res://.godot/imported/Merry1.png-86f8c5ed9f2200135adc99507682b158.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Map/Levels/Level_2/leve2.png"
-dest_files=["res://.godot/imported/leve2.png-4916469cdd8d61c10badb710901b63b5.ctex"]
+source_file="res://Entity/Enemies/Merry/Merry1.png"
+dest_files=["res://.godot/imported/Merry1.png-86f8c5ed9f2200135adc99507682b158.ctex"]
 
 [params]
 

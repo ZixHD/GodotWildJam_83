@@ -18,7 +18,6 @@ var start_position: Vector2i = Vector2i.ZERO
 var spotted_player: bool = false
 var in_range: bool = false;
 var attacking: bool = false;
-var stunned: bool = false;
 
 signal attack_player
 
@@ -63,12 +62,6 @@ func _moving(delta: float) -> void:
 	elif velocity.x >= 0 or velocity.x <= 0:
 		entity_state = state.RUNNING
 		
-	if stunned:
-		print("stun")
-		velocity.x = 0
-		entity_state = state.IDLE
-		await get_tree().create_timer(2.5).timeout
-		stunned = false
 	if ray_cast_2d.is_colliding():
 		spotted_player = true
 	if player:
@@ -80,7 +73,7 @@ func _moving(delta: float) -> void:
 	
 	velocity.y += 980.0 * delta
 	
-	if spotted_player and player and !stunned:
+	if spotted_player and player:
 		var direction_to_player = sign(player.global_position.x - global_position.x)
 		velocity.x = direction_to_player * PATROL_SPEED
 		move_and_slide()
@@ -98,7 +91,7 @@ func _on_hit() -> void:
 	queue_free()
 
 func _attack() -> void:
-	if in_range and !attacking and !stunned:
+	if in_range and !attacking :
 		entity_state = state.ATTACKING
 		attacking = true
 	
@@ -120,5 +113,4 @@ func _leap_to_player() -> void:
 	if !in_range:
 		self.global_position = player.global_position - Vector2(-100, 0)
 		
-func _stunned() -> void:
-	stunned = true
+	

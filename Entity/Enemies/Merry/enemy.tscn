@@ -1,7 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddps3cvirlba7"]
+[gd_scene load_steps=13 format=3 uid="uid://7kauhuy365ss"]
 
-[ext_resource type="Script" uid="uid://bw3lygayopvfn" path="res://Entity/Enemies/EnemyGhoul/enemy.gd" id="1_opghj"]
-[ext_resource type="Texture2D" uid="uid://baghvfw8rdylu" path="res://Entity/Enemies/EnemyGhoul/Merry1.png" id="2_opghj"]
+[ext_resource type="Script" uid="uid://bw3lygayopvfn" path="res://Entity/Enemies/EnemyGhoul/enemy.gd" id="1_mop53"]
+[ext_resource type="Texture2D" uid="uid://baghvfw8rdylu" path="res://Entity/Enemies/EnemyGhoul/Merry1.png" id="2_1lm0i"]
 
 [sub_resource type="Shader" id="Shader_q533w"]
 code = "shader_type canvas_item;
@@ -130,13 +130,13 @@ radius = 77.6209
 [node name="Merry" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource("1_opghj")
+script = ExtResource("1_mop53")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_crevy")
 scale = Vector2(2, 2)
-texture = ExtResource("2_opghj")
+texture = ExtResource("2_1lm0i")
 hframes = 4
 vframes = 3
 frame = 3

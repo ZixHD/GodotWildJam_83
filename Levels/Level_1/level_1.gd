@@ -6,4 +6,4 @@ func _on_spikes_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.take_damage()
 	else:
-		body.on_hit()
+		body._on_hit()
