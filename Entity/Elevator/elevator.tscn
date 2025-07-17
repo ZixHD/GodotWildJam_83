@@ -44,6 +44,7 @@ _data = {
 }
 
 [node name="Elevator" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_1k7yo")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -769,7 +769,7 @@ visible = false
 color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 
 [node name="Elevator" parent="." instance=ExtResource("4_fh3s5")]
-position = Vector2(1972, 332)
+position = Vector2(1971, 309)
 
 [node name="Enemies" type="Node" parent="."]
 
