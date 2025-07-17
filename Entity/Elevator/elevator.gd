@@ -22,14 +22,17 @@ func _on_body_entered(body: Node2D) -> void:
 		running_dust_timer.timeout.connect(_close_door)
 
 func _close_door() -> void:
+	self.z_index = 1
 	animation_player.play_backwards("door_open")
-	var running_dust_timer = Timer.new()
-	running_dust_timer.wait_time = 1.2
-	running_dust_timer.one_shot = true
-	running_dust_timer.autostart = true
-	add_child(running_dust_timer)
-	running_dust_timer.start()
-	running_dust_timer.timeout.connect(_transition)
+	await animation_player.animation_finished
+	animation_player.play("idle")
+	var elevator_timer = Timer.new()
+	elevator_timer.wait_time = 1.2
+	elevator_timer.one_shot = true
+	elevator_timer.autostart = true
+	add_child(elevator_timer)
+	elevator_timer.start()
+	elevator_timer.timeout.connect(_transition)
 
 	
 func _transition() -> void:
