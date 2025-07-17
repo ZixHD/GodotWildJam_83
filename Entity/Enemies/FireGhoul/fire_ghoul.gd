@@ -77,7 +77,6 @@ func _moving(delta: float) -> void:
 #	smisli logiku da preleti rupu
 	velocity.y += 980.0 * delta
 	if stunned:
-		print("stun")
 		velocity.x = 0
 		entity_state = state.IDLE
 		await get_tree().create_timer(2.5).timeout

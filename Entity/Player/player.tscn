@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://dgglgu1i2ne6l"]
+[gd_scene load_steps=35 format=3 uid="uid://dgglgu1i2ne6l"]
 
 [ext_resource type="Script" uid="uid://blyvjxigredbc" path="res://Entity/Player/player.gd" id="1_qb0yx"]
 [ext_resource type="Texture2D" uid="uid://bcfh3dgfa68il" path="res://Entity/Player/detective_anims1.png" id="2_qb0yx"]
@@ -18,7 +18,6 @@ shader_parameter/apply = 0.0
 
 [sub_resource type="Animation" id="Animation_ub5qt"]
 length = 0.3
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -50,7 +49,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_jksyu"]
 length = 0.36
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -66,7 +64,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_qb0yx"]
 length = 0.64
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -97,8 +94,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_lshpy"]
-length = 0.5
-loop_mode = 1
+length = 0.25
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -106,10 +102,22 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"times": PackedFloat32Array(0, 0.0333333, 0.1, 0.133333, 0.2),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [24, 25, 26, 27, 28]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MerryHitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.133333, 0.233333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [true, false, true]
 }
 
 [sub_resource type="Animation" id="Animation_k7rle"]
@@ -129,8 +137,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ve7px"]
-length = 0.3
-loop_mode = 1
+length = 0.15
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -138,15 +145,28 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
+"times": PackedFloat32Array(0, 0.0333333, 0.1),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [29, 30, 31]
 }
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_fire_attack"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_7skvd"]
 length = 0.3
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -162,7 +182,6 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_vhflw"]
 length = 0.4
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -176,8 +195,24 @@ tracks/0/keys = {
 "values": [35, 36, 37, 38]
 }
 
+[sub_resource type="Animation" id="Animation_eiw37"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MerryHitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_jksyu"]
 _data = {
+&"RESET": SubResource("Animation_eiw37"),
 &"attack_merry": SubResource("Animation_lshpy"),
 &"attack_merry2": SubResource("Animation_k7rle"),
 &"camera": SubResource("Animation_ub5qt"),
@@ -295,17 +330,13 @@ anim_speed_max = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rawpq"]
 size = Vector2(67.5, 41)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jksyu"]
+size = Vector2(36, 34)
+
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 3
 script = ExtResource("1_qb0yx")
-jump_buffer_time = null
-coyote_time = null
-acceleration = null
-deceleration = null
-dash_speed = null
-dash_max_distance = null
 dash_curve = SubResource("Curve_qb0yx")
-dash_cooldown = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -315,7 +346,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_qb0yx")
 hframes = 7
 vframes = 6
-frame = 24
+frame = 35
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -392,6 +423,7 @@ shadow_enabled = true
 texture = ExtResource("4_viyt1")
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
@@ -404,10 +436,19 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(1.5, 1.5)
 
-[node name="Merry" type="Node" parent="."]
+[node name="MerryHitbox" type="Area2D" parent="."]
+collision_mask = 2
 
-[node name="Area2D" type="Area2D" parent="Merry"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MerryHitbox"]
+position = Vector2(-42, 4)
+shape = SubResource("RectangleShape2D_jksyu")
+disabled = true
+debug_color = Color(0.758962, 0.0957116, 0.48589, 0.42)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Merry/Area2D"]
+[node name="ThrowablesSpawn" type="Marker2D" parent="."]
+position = Vector2(-42, 0)
+
+[node name="ThrowablesTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_entered" from="MerryHitbox" to="." method="_on_merry_hibtox_body_entered"]

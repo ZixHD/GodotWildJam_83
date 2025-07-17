@@ -11,6 +11,11 @@ extends CharacterBody2D
 @onready var marker_2d_right: Marker2D = $Marker2DRight
 @onready var attack_range: CollisionShape2D = $AttackRange/CollisionShape2D
 @onready var power_up_timer: Timer = $PowerUpTimer
+@onready var merry_collision: CollisionShape2D = $MerryHitbox/CollisionShape2D
+@onready var throwables_spawn: Marker2D = $ThrowablesSpawn
+@onready var throwables_timer: Timer = $ThrowablesTimer
+
+
 
 
 
@@ -60,8 +65,8 @@ const jump_power = -1000.0
 #game-mechanics
 const MAX_PLAYER_HEALTH = 1
 enum state {RUNNING, IDLE, JUMPING, DASHING, SHOOTING, DEAD}
-enum ghost_state {MERRY, FIRE, SLIME}
-var player_ghost_state = null
+enum ghost_state {CAMERA, MERRY, FIRE, SLIME}
+var player_ghost_state = ghost_state.CAMERA
 var was_in_air = false;
 var player_state = state.IDLE
 var idle_direction: int = 0
@@ -70,7 +75,7 @@ var shooting: bool = false;
 var level_end_flag: bool = false;
 var can_attack: bool = false;
 var power_up_name: String = "";
-
+var can_throw: bool = true;
 
 
 func _update_animation() -> void:
@@ -92,7 +97,7 @@ func _update_animation() -> void:
 				jumped = false
 		state.SHOOTING:
 			if shooting:
-				animation_player.play("camera")
+				_update_ghost_animation()
 				await animation_player.animation_finished
 				player_state = state.RUNNING
 				shooting = false
@@ -105,6 +110,17 @@ func _update_animation() -> void:
 			GameManager.load_retry_scene()
 			print("")
 
+func _update_ghost_animation() -> void:
+	match(player_ghost_state):
+		ghost_state.CAMERA:
+			animation_player.play("camera")
+		ghost_state.MERRY:
+			animation_player.play("attack_merry")
+		ghost_state.FIRE:	
+			animation_player.play("fire_attack")
+		ghost_state.SLIME:	
+			animation_player.play("slime_attack")
+			
 func _ready() -> void:
 	
 	jump_buffer_timer = Timer.new();
@@ -128,6 +144,15 @@ func _ready() -> void:
 	power_up_timer.one_shot = true
 	power_up_timer.autostart = false;
 	power_up_timer.timeout.connect(on_power_expired)
+	
+	
+	throwables_timer.wait_time = 0.5
+	throwables_timer.one_shot = false
+	throwables_timer.autostart = false;
+	throwables_timer.timeout.connect(_on_throw)
+	throwables_timer.start()
+	
+	
 
 func on_level_end() -> void:
 	level_end_flag = true
@@ -137,7 +162,7 @@ func _physics_process(delta: float) -> void:
 	if !level_end_flag:
 		if player_state != state.DEAD and player_state != state.SHOOTING:
 			_moving(delta)
-		_camera_shoot()
+		_attack()
 	_update_animation()
 
 func _moving(delta: float) -> void:
@@ -296,14 +321,15 @@ func _spawn_jump_dust() -> void:
 	dust_particles_jump_right.emitting = true;
 
 func _attack() -> void:
-	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack:
-		
+	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack and can_throw:
+		player_ghost_state = ghost_state.SLIME
 		match(player_ghost_state):
 			null:
 				_camera_shoot()
 			ghost_state.MERRY:
+				print("merri")
 				_merry_attack()
-			ghost_state.FIRE:	
+			ghost_state.FIRE:
 				_fire_attack()
 			ghost_state.SLIME:	
 				_slime_attack()
@@ -325,21 +351,55 @@ func _camera_shoot() -> void:
 		attack_range.global_position = point_light_2d.global_position 
 		
 func _merry_attack() -> void:
-	attack_range.disabled = false;
 	if !is_on_floor():
 		can_attack = false
 	if sprite_2d.is_flipped_h():
-		
+		merry_collision.global_position.x = self.global_position.x + 42.0
 	elif !sprite_2d.is_flipped_h():
-		point_light_2d.global_position = marker_2d_left.global_position 
-		point_light_2d.rotation_degrees = 90.0 
-		attack_range.global_position = point_light_2d.global_position 
+		merry_collision.global_position.x = self.global_position.x - 42.0
 
 func _fire_attack() -> void:
-	print("attack")
-
+	if !is_on_floor():
+		can_attack = false
+	const FIRE_BALL = preload("res://Entity/Enemies/FireGhoul/FireBall/fire_ball.tscn")
+	var fire_ball = FIRE_BALL.instantiate()
+	print("fire", fire_ball)
+	get_tree().current_scene.add_child(fire_ball)
+	fire_ball.global_position = throwables_spawn.global_position
+	fire_ball.global_rotation = throwables_spawn.global_rotation
+	var direction: Vector2 = Vector2.ZERO
+	
+	if sprite_2d.is_flipped_h():
+		throwables_spawn.global_position.x = self.global_position.x + 42.0
+		direction = Vector2.RIGHT
+	elif !sprite_2d.is_flipped_h():
+		throwables_spawn.global_position.x = self.global_position.x - 42.0
+		direction = Vector2.LEFT
+		
+	if self:
+		fire_ball.setup_player("Player", direction) 
+	can_throw = false
+	
 func _slime_attack() -> void:
-	print("attack")
+	if !is_on_floor():
+		can_attack = false
+	const SLIME_BALL = preload("res://Entity/Enemies/SlimeGhoul/SlimeBall/slime_ball.tscn")
+	var slime_ball = SLIME_BALL.instantiate()
+	get_tree().current_scene.add_child(slime_ball)
+	slime_ball.global_position = throwables_spawn.global_position
+	slime_ball.global_rotation = throwables_spawn.global_rotation
+	var direction: Vector2 = Vector2.ZERO
+	
+	if sprite_2d.is_flipped_h():
+		throwables_spawn.global_position.x = self.global_position.x + 42.0
+		direction = Vector2.RIGHT
+	elif !sprite_2d.is_flipped_h():
+		throwables_spawn.global_position.x = self.global_position.x - 42.0
+		direction = Vector2.LEFT
+		
+	if self:
+		slime_ball.setup_player("Player", direction, throwables_spawn.global_position) 
+	can_throw = false
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
@@ -366,7 +426,7 @@ func take_damage() -> void:
 func on_power_expired() -> void:
 	var mat := sprite_2d.material as ShaderMaterial
 	mat.set_shader_parameter("apply", 0.0)
-	player_ghost_state = null
+	player_ghost_state = ghost_state.CAMERA
 
 func _attack_change(power_up: String) -> void:
 	match(power_up):
@@ -376,3 +436,11 @@ func _attack_change(power_up: String) -> void:
 			player_ghost_state = ghost_state.FIRE
 		"Slime":
 			player_ghost_state = ghost_state.SLIME
+
+
+func _on_merry_hibtox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		body._on_hit()
+	
+func _on_throw() -> void:
+	can_throw = true

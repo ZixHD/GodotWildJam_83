@@ -3,7 +3,6 @@ extends Area2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player: Node2D = get_tree().get_first_node_in_group("Player")
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var cpu_particles_2d: CPUParticles2D = $CPUParticles2D
 
 @export var speed = 300.0
 const RANGE = 200
@@ -13,15 +12,9 @@ var travelled_distance = 0.0
 var max_range_reached: bool = false
 var start_position: Vector2 = Vector2.ZERO
 var returning: bool = false
+var user: String = ""
 
 
-#func _ready() -> void:
-	#var slime_timer = Timer.new()
-	#slime_timer.wait_time = 0.1
-	#slime_timer.one_shot = false
-	#slime_timer.autostart = true
-	#add_child(slime_timer)
-	#slime_timer.timeout.connect(_spawn_slime)
 	
 func _process(delta: float) -> void:
 	animation_player.play("ball")
@@ -38,8 +31,6 @@ func _process(delta: float) -> void:
 	elif returning and global_position.distance_to(start_position) <= 5:
 		queue_free()
 		
-	if global_position.distance_to(start_position) <= 5:
-		cpu_particles_2d.emitting = false;
 
 func setup(target_position: Vector2, start_position: Vector2):
 	self.start_position = start_position
@@ -49,11 +40,23 @@ func setup(target_position: Vector2, start_position: Vector2):
 	velocity = direction * speed
 	rotation = direction.angle()
 	sprite_2d.flip_h = true
+	self.user = user
+	collision_layer = 2
+	collision_mask = 1
+	
+func setup_player(user: String, direction: Vector2, start_position: Vector2):
+	self.start_position = start_position
+	velocity = direction.normalized() * speed
+	rotation = direction.angle()
+	sprite_2d.flip_h = true
+	self.user = user
+	collision_layer = 1
+	collision_mask = 2
 
 func _on_body_entered(body: Node2D) -> void:
-	if body.is_in_group("Player"):
+	if body.is_in_group("Player") and user == "Enemy":
 		body.take_damage()
-		queue_free()
+	elif body.is_in_group("Enemy") and user == "Player":
+		body._on_hit()
+	queue_free()
 		
-func _spawn_slime() -> void:
-	cpu_particles_2d.emitting = true

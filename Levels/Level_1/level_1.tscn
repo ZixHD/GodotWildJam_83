@@ -780,7 +780,7 @@ position = Vector2(538, 195)
 position = Vector2(1437, 358)
 
 [node name="SlimeGhoul" parent="Enemies" instance=ExtResource("7_7bnrq")]
-position = Vector2(543, 494)
+position = Vector2(975, 504)
 
 [node name="Objects" type="Node" parent="."]
 
