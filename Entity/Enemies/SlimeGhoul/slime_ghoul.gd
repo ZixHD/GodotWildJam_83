@@ -18,6 +18,7 @@ var spotted_player: bool = false
 var in_range: bool = false;
 var attacking: bool = false;
 var can_attack: bool = false;
+var stunned: bool = false;
 
 signal attack_player
 
@@ -37,6 +38,9 @@ func _update_animation():
 		state.DEAD:
 			print("DEAD")
 
+	
+func get_id() -> String:
+	return "Slime"
 
 func _ready() -> void:
 	
@@ -51,7 +55,10 @@ func _process(delta: float) -> void:
 		_moving(delta)
 	if player:
 		sprite_2d.flip_h = player.global_position.x > global_position.x
-		
+		if sprite_2d.is_flipped_h():
+			ray_cast_2d.global_rotation_degrees = 270.0
+		else:
+			ray_cast_2d.global_rotation_degrees = 90.06
 	_in_range_check()
 	_attack()
 	_update_animation()
@@ -63,16 +70,21 @@ func _moving(delta: float) -> void:
 	elif velocity.x >= 0 or velocity.x <= 0:
 		entity_state = state.RUNNING
 		
-
+	if stunned:
+		print("stun")
+		velocity.x = 0
+		entity_state = state.IDLE
+		await get_tree().create_timer(2.5).timeout
+		stunned = false
 	velocity.y += 980.0 * delta
-	if spotted_player and player:
+	if spotted_player and player and !stunned:
 		var direction_to_player = sign(player.global_position.x - global_position.x)
 		velocity.x = direction_to_player * PATROL_SPEED
 		move_and_slide()
 		
 		
 func _attack() -> void:
-	if in_range and !attacking and can_attack:
+	if in_range and !attacking and can_attack and !stunned:
 		entity_state = state.ATTACKING
 		const SLIME_BALL = preload("res://Entity/Enemies/SlimeGhoul/SlimeBall/slime_ball.tscn")
 		var slime_ball = SLIME_BALL.instantiate()
@@ -106,3 +118,6 @@ func _on_hit() -> void:
 	particles.emitting = true
 	#play_explosion, wait 0.25 sec, then delete
 	queue_free()
+	
+func _stunned() -> void:
+	stunned = true

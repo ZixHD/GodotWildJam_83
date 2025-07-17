@@ -60,12 +60,16 @@ const jump_power = -1000.0
 #game-mechanics
 const MAX_PLAYER_HEALTH = 1
 enum state {RUNNING, IDLE, JUMPING, DASHING, SHOOTING, DEAD}
+enum ghost_state {MERRY, FIRE, SLIME}
+var player_ghost_state = null
 var was_in_air = false;
 var player_state = state.IDLE
 var idle_direction: int = 0
 var jumped: bool = false;
 var shooting: bool = false;
 var level_end_flag: bool = false;
+var can_attack: bool = false;
+var power_up_name: String = "";
 
 
 
@@ -138,6 +142,7 @@ func _physics_process(delta: float) -> void:
 
 func _moving(delta: float) -> void:
 	if is_on_floor():
+		can_attack = true
 		if velocity.x == 0:
 			if player_state != state.DASHING and player_state != state.SHOOTING:
 				player_state = state.IDLE;
@@ -229,7 +234,9 @@ func dashing(direction, delta):
 		
 		velocity.y += 980.0 * delta
 		player_state = state.DASHING
-		collision_shape_2d.disabled = true
+		collision_layer = 2 
+		collision_mask = 4 | 5
+
 		var current_distance = abs(position.x - dash_start_position)
 		if(current_distance >= dash_max_distance or is_on_wall()):
 			is_dashing = false;
@@ -237,7 +244,7 @@ func dashing(direction, delta):
 			velocity.x = dash_direction * dash_speed * dash_curve.sample(current_distance / dash_max_distance)
 			velocity.y = 0;
 	else:
-		collision_shape_2d.disabled = false;
+		self.collision_layer = 1
 	if(dash_timer > 0):
 		dash_timer -= delta;
 		
@@ -288,34 +295,60 @@ func _spawn_jump_dust() -> void:
 	dust_particles_jump_right.restart()
 	dust_particles_jump_right.emitting = true;
 
-func _camera_shoot() -> void:
-	if Input.is_action_just_pressed("click") and player_state != state.DASHING and player_state != state.JUMPING:
-		point_light_2d.enabled = true
-		attack_range.disabled = false;
-		if sprite_2d.is_flipped_h():
-			print("camera settings flipped: ", point_light_2d.rotation)
-			point_light_2d.global_position = marker_2d_right.global_position 
-			point_light_2d.rotation_degrees = 270.0
-			attack_range.global_position = point_light_2d.global_position 
-		elif !sprite_2d.is_flipped_h():
-			print("camera settings mot: ", point_light_2d.rotation)
-			point_light_2d.global_position = marker_2d_left.global_position 
-			point_light_2d.rotation_degrees = 90.0 
-			attack_range.global_position = point_light_2d.global_position 
-			
+func _attack() -> void:
+	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack:
+		
+		match(player_ghost_state):
+			null:
+				_camera_shoot()
+			ghost_state.MERRY:
+				_merry_attack()
+			ghost_state.FIRE:	
+				_fire_attack()
+			ghost_state.SLIME:	
+				_slime_attack()
 		shooting = true
 		player_state = state.SHOOTING
+		
+func _camera_shoot() -> void:
+	point_light_2d.enabled = true
+	attack_range.disabled = false;
+	if !is_on_floor():
+		can_attack = false
+	if sprite_2d.is_flipped_h():
+		point_light_2d.global_position = marker_2d_right.global_position 
+		point_light_2d.rotation_degrees = 270.0
+		attack_range.global_position = point_light_2d.global_position 
+	elif !sprite_2d.is_flipped_h():
+		point_light_2d.global_position = marker_2d_left.global_position 
+		point_light_2d.rotation_degrees = 90.0 
+		attack_range.global_position = point_light_2d.global_position 
+		
+func _merry_attack() -> void:
+	attack_range.disabled = false;
+	if !is_on_floor():
+		can_attack = false
+	if sprite_2d.is_flipped_h():
+		
+	elif !sprite_2d.is_flipped_h():
+		point_light_2d.global_position = marker_2d_left.global_position 
+		point_light_2d.rotation_degrees = 90.0 
+		attack_range.global_position = point_light_2d.global_position 
+
+func _fire_attack() -> void:
+	print("attack")
+
+func _slime_attack() -> void:
+	print("attack")
 
 func _on_attack_range_body_entered(body: Node2D) -> void:
-	print("kao im1a")
 	if body.is_in_group("Enemy"):
-		print("kao im2a")
-		if body.has_method("_on_hit"):
-			body._on_hit()
+		body._stunned()
 		await get_tree().create_timer(0.25).timeout
 		var mat := sprite_2d.material as ShaderMaterial
-		print("goot")
 		mat.set_shader_parameter("apply", 1.0)
+		power_up_name = body.get_id()
+		_attack_change(power_up_name)
 		power_up_timer.start()
 
 func take_damage() -> void:
@@ -332,5 +365,14 @@ func take_damage() -> void:
 
 func on_power_expired() -> void:
 	var mat := sprite_2d.material as ShaderMaterial
-	print("goot")
 	mat.set_shader_parameter("apply", 0.0)
+	player_ghost_state = null
+
+func _attack_change(power_up: String) -> void:
+	match(power_up):
+		"Merry":
+			player_ghost_state = ghost_state.MERRY
+		"Fire":
+			player_ghost_state = ghost_state.FIRE
+		"Slime":
+			player_ghost_state = ghost_state.SLIME

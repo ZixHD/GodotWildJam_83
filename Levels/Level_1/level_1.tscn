@@ -774,13 +774,13 @@ position = Vector2(1972, 332)
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_fh3s5")]
-position = Vector2(959, 59)
+position = Vector2(538, 195)
 
 [node name="FireGhoul" parent="Enemies" instance=ExtResource("6_ya7ph")]
-position = Vector2(590, 210)
+position = Vector2(1437, 358)
 
 [node name="SlimeGhoul" parent="Enemies" instance=ExtResource("7_7bnrq")]
-position = Vector2(600, 501)
+position = Vector2(543, 494)
 
 [node name="Objects" type="Node" parent="."]
 
@@ -789,13 +789,15 @@ position = Vector2(1020, 242)
 
 [node name="Spikes" type="Area2D" parent="."]
 position = Vector2(657, 596)
+collision_layer = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spikes"]
 position = Vector2(40, -17)
 shape = SubResource("RectangleShape2D_c1hxc")
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
-position = Vector2(184, 486)
+position = Vector2(377, 480)
 collision_mask = 7
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]
