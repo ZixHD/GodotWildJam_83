@@ -100,10 +100,8 @@ func _in_range_check() -> void:
 	if ray_cast_2d.is_colliding():
 		spotted_player = true
 		if !attacking:
-			print("In range")
 			in_range = true
 	else:
-		print("nije vise u range")
 		in_range = false
 		
 func _attack_check() -> void:

@@ -82,7 +82,6 @@ func _update_animation() -> void:
 			animation_player.play("roll")
 			await animation_player.animation_finished
 			player_state = state.RUNNING
-		
 		state.JUMPING:
 			if jumped:
 				animation_player.play("jump")
@@ -97,6 +96,8 @@ func _update_animation() -> void:
 				attack_range.disabled = true
 				
 		state.DEAD:
+			await get_tree().create_timer(1.0).timeout;
+			queue_free()
 			GameManager.load_retry_scene()
 			print("")
 
@@ -305,9 +306,6 @@ func _camera_shoot() -> void:
 		shooting = true
 		player_state = state.SHOOTING
 
-func _on_hit() -> void:
-	player_state = state.DEAD
-
 func _on_attack_range_body_entered(body: Node2D) -> void:
 	print("kao im1a")
 	if body.is_in_group("Enemy"):
@@ -329,7 +327,8 @@ func take_damage() -> void:
 	player_state = state.DEAD
 	var particles: CPUParticles2D = explosion.get_node("CPUParticles2D")
 	particles.emitting = true
-	queue_free()
+	particles.color = Color(255, 0, 0)
+	sprite_2d.visible = false
 
 func on_power_expired() -> void:
 	var mat := sprite_2d.material as ShaderMaterial
