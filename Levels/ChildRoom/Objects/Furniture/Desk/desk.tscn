@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwi1ux40ga505"]
+
+[ext_resource type="Texture2D" uid="uid://bhqbis8kph78a" path="res://Assets/Map/ChildRoom/furnitures/stolcic1.png" id="1_t5y75"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_se7ci"]
+size = Vector2(30, 20)
+
+[node name="Desk" type="StaticBody2D"]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_t5y75")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_se7ci")

@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3365tiesg0cm"]
+
+[ext_resource type="Texture2D" uid="uid://dksvvblci1vg6" path="res://Assets/Map/ChildRoom/furnitures/tepih produzeni2.png" id="1_sk5gk"]
+
+[node name="Carpet" type="StaticBody2D"]
+position = Vector2(-2, 0)
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sk5gk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+texture_filter = 1

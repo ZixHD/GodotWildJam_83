@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://71ee8lks0u3t"]
+
+[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_7822p"]
+[ext_resource type="Texture2D" uid="uid://cxir0kst8vk63" path="res://Assets/Map/ChildRoom/toys/autic1.png" id="1_uoj53"]
+
+[node name="Car" type="StaticBody2D"]
+scale = Vector2(1.5, 1.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_uoj53")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+[node name="InteractionArea" parent="." instance=ExtResource("1_7822p")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
