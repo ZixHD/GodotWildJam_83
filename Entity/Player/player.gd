@@ -14,6 +14,7 @@ extends CharacterBody2D
 @onready var merry_collision: CollisionShape2D = $MerryHitbox/CollisionShape2D
 @onready var throwables_spawn: Marker2D = $ThrowablesSpawn
 @onready var throwables_timer: Timer = $ThrowablesTimer
+@onready var camera_2d: Camera2D = $Camera2D
 
 
 
@@ -175,6 +176,27 @@ func on_level_2_end() -> void:
 	var target_position = position + Vector2(300, 0)
 	tween.tween_property(self, "position", target_position, 0.7)
 
+func on_level_3_end() -> void:
+	const CANVAS_LAYER = preload("res://Levels/EndCutscene/end_cutscene.tscn")
+	var end_cutscene = CANVAS_LAYER.instantiate()
+	add_child(end_cutscene)
+	remove_child(camera_2d)
+	get_tree().current_scene.add_child(camera_2d)
+	camera_2d.global_position = self.global_position
+	level_end_flag = true
+	player_state = state.IDLE
+	await get_tree().create_timer(0.5).timeout
+	_camera_move()
+	
+func _camera_move() -> void:
+	var tween = create_tween()
+	var target_position = camera_2d.global_position + Vector2(600, 0)
+	tween.tween_property(camera_2d, "global_position", target_position, 0.7)
+	await tween.finished
+	tween.stop()
+	await get_tree().create_timer(5).timeout
+	tween = create_tween()
+	tween.tween_property(camera_2d, "global_position", self.global_position, 0.7)
 	
 func _physics_process(delta: float) -> void:
 	if !level_end_flag:
