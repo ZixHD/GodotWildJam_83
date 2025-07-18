@@ -784,7 +784,7 @@ position = Vector2(975, 504)
 
 [node name="Objects" type="Node" parent="."]
 
-[node name="StaticBody2D" parent="Objects" instance=ExtResource("8_c1hxc")]
+[node name="Chandaleir" parent="Objects" instance=ExtResource("8_c1hxc")]
 position = Vector2(1020, 242)
 
 [node name="Spikes" type="Area2D" parent="."]
@@ -797,7 +797,6 @@ position = Vector2(40, -17)
 shape = SubResource("RectangleShape2D_c1hxc")
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
-position = Vector2(1850, 342)
-collision_mask = 7
+position = Vector2(1817, 345)
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]

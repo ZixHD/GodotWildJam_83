@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: Node2D = get_tree().get_first_node_in_group("Player")
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var attack_timer: Timer = $AttackTimer
@@ -99,7 +99,7 @@ func _attack() -> void:
 		fire_ball.global_position = fire_ball_spawn.global_position
 		fire_ball.global_rotation = fire_ball_spawn.global_rotation
 		if player:
-			fire_ball.setup(player.global_position)
+			fire_ball.setup(player.global_position, "Enemy")
 		attacking = true
 		can_attack = false
 		

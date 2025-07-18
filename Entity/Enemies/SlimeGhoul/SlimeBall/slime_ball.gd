@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 		queue_free()
 		
 
-func setup(target_position: Vector2, start_position: Vector2):
+func setup(user: String, target_position: Vector2, start_position: Vector2):
 	self.start_position = start_position
 	var direction = target_position - global_position
 	direction.y = 0 

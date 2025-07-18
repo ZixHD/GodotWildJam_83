@@ -1,5 +1,6 @@
 extends Node2D
-@onready var player: CharacterBody2D = $Player
+
+@onready var player: Node2D = get_tree().get_first_node_in_group("Player")
 
 
 func _on_spikes_body_entered(body: Node2D) -> void:

@@ -3,7 +3,7 @@ extends CharacterBody2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var attack_timer: Timer = $AttackTimer
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: Node2D = get_tree().get_first_node_in_group("Player")
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
 @onready var slime_ball_spawn: Marker2D = $SlimeBallSpawn
 
@@ -91,7 +91,7 @@ func _attack() -> void:
 		slime_ball.global_position = slime_ball_spawn.global_position
 		slime_ball.global_rotation = slime_ball_spawn.global_rotation
 		if player:
-			slime_ball.setup(player.global_position, slime_ball_spawn.global_position)
+			slime_ball.setup("Enemy", player.global_position, slime_ball_spawn.global_position)
 		attacking = true
 		can_attack = false
 		

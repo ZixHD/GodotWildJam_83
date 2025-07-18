@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://udlcvuvb4ve1"]
 
-[ext_resource type="Script" uid="uid://bf3ojs2efw271" path="res://Objects/ChildRoom/Furniture/Window/window.gd" id="1_hjewq"]
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Utils/interaction/interaction_area/interaction_area.tscn" id="2_hjewq"]
+[ext_resource type="Script" uid="uid://bf3ojs2efw271" path="res://Levels/ChildRoom/Objects/Furniture/Window/window.gd" id="1_hjewq"]
+[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="2_hjewq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nfq5s"]
 size = Vector2(78, 93)

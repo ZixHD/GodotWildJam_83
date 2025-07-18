@@ -8,11 +8,11 @@ extends Area2D
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.on_level_end()
+		body.on_level_1_end()
 #		play the animation of the elevator closing
 #		on animation_finished emit the signal and call GameManager.next_scene
 		animation_player.play("door_open")
-		player.global_position = player_position.global_position
+		#player.global_position = player_position.global_position
 		var running_dust_timer = Timer.new()
 		running_dust_timer.wait_time = 2
 		running_dust_timer.one_shot = true

@@ -18,7 +18,6 @@ extends CharacterBody2D
 
 
 
-
 @export var jump_buffer_time: float = 0.1
 @export var coyote_time: float = 0.1
 
@@ -154,9 +153,28 @@ func _ready() -> void:
 	
 	
 
-func on_level_end() -> void:
+func on_level_1_end() -> void:
+	const CANVAS_LAYER = preload("res://Levels/EndCutscene/end_cutscene.tscn")
+	var end_cutscene = CANVAS_LAYER.instantiate()
+	add_child(end_cutscene)
+	var tween = create_tween()
 	level_end_flag = true
+	player_state = state.RUNNING
+	var target_position = position + Vector2(90, 0)
+	tween.tween_property(self, "position", target_position, 0.5)
+	await tween.finished
 	player_state = state.IDLE
+
+func on_level_2_end() -> void:
+	const CANVAS_LAYER = preload("res://Levels/EndCutscene/end_cutscene.tscn")
+	var end_cutscene = CANVAS_LAYER.instantiate()
+	add_child(end_cutscene)
+	var tween = create_tween()
+	level_end_flag = true
+	player_state = state.RUNNING
+	var target_position = position + Vector2(300, 0)
+	tween.tween_property(self, "position", target_position, 0.7)
+
 	
 func _physics_process(delta: float) -> void:
 	if !level_end_flag:

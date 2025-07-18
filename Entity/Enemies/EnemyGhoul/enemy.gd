@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var ray_cast_2d: RayCast2D = $RayCast2D
-@onready var player: CharacterBody2D = $"../../Player"
+@onready var player: Node2D = get_tree().get_first_node_in_group("Player")
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var hit_box: CollisionShape2D = $HitBox/CollisionShape2D
 @onready var attack_range: CollisionShape2D = $AttackRange/CollisionShape2D

@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dgd1snlxlv2on" path="res://Entity/Elevator/elevator.png" id="2_de7kw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx0lj"]
-size = Vector2(105, 102)
+size = Vector2(112, 102)
 
 [sub_resource type="Animation" id="Animation_f73sr"]
 length = 0.7
@@ -53,6 +53,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_de7kw")
 hframes = 3
 vframes = 3
+frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -71,7 +72,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0807bcf42ed72fa224413a323b4d2bdc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 1)
+position = Vector2(-4, 1)
 shape = SubResource("RectangleShape2D_vx0lj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -80,6 +81,6 @@ libraries = {
 }
 
 [node name="PlayerPosition" type="Marker2D" parent="."]
-position = Vector2(0, 5)
+position = Vector2(0, 20.6667)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
