@@ -1,18 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyeu3pdvj0crk"]
+[gd_scene load_steps=3 format=3 uid="uid://dyeu3pdvj0crk"]
 
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_iidgk"]
-[ext_resource type="Script" uid="uid://b3sp6mhocf3fx" path="res://Levels/ChildRoom/Objects/Furniture/ToyChest/toy_chest.gd" id="1_lsd5d"]
 [ext_resource type="Texture2D" uid="uid://b4e3e4r2lyspq" path="res://Assets/Map/ChildRoom/furnitures/kovceg.png" id="1_pqe6o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pqe6o"]
 size = Vector2(57, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsd5d"]
-size = Vector2(77, 45)
-
 [node name="ToyChest" type="StaticBody2D"]
 scale = Vector2(1.2, 1.2)
-script = ExtResource("1_lsd5d")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -22,8 +16,3 @@ texture = ExtResource("1_pqe6o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -1)
 shape = SubResource("RectangleShape2D_pqe6o")
-
-[node name="InteractionArea" parent="." instance=ExtResource("1_iidgk")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("RectangleShape2D_lsd5d")

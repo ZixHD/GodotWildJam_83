@@ -21,7 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://bbh2vx4tmggjg" path="res://Levels/ChildRoom/Objects/Toys/Drawing/drawing.tscn" id="18_snptr"]
 [ext_resource type="PackedScene" uid="uid://37wodve28fyf" path="res://Levels/ChildRoom/Objects/Toys/ActionFigure/action_figure.tscn" id="19_3sxnw"]
 [ext_resource type="PackedScene" uid="uid://cvdo35eghlrdv" path="res://Levels/ChildRoom/Objects/Toys/TeddyBear/teddy_bear.tscn" id="20_uto4q"]
-[ext_resource type="PackedScene" uid="uid://dxga01sdtfqty" path="res://Levels/FadeAway/transition_screen.tscn" id="22_2ecrr"]
+[ext_resource type="PackedScene" uid="uid://dxga01sdtfqty" path="res://Levels/Screens/FadeAway/transition_screen.tscn" id="22_2ecrr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_joq8n"]
 texture = ExtResource("1_fqjbs")
@@ -352,30 +352,25 @@ tile_set = SubResource("TileSet_joq8n")
 [node name="Player" parent="." instance=ExtResource("2_4nr80")]
 z_index = 20
 position = Vector2(306, 278)
-script = null
 
 [node name="Furniture" type="Node" parent="."]
 
 [node name="Window1" parent="Furniture" instance=ExtResource("3_1p7cm")]
 position = Vector2(174, 79)
 scale = Vector2(1.39887, 1.72683)
-script = null
 
 [node name="Window2" parent="Furniture" instance=ExtResource("3_1p7cm")]
 position = Vector2(476, 78)
 scale = Vector2(1.32186, 1.68207)
-script = null
 
 [node name="Bed" parent="Furniture" instance=ExtResource("4_xv1xy")]
 position = Vector2(78, 189)
-script = null
 
 [node name="Desk" parent="Furniture" instance=ExtResource("5_efwsb")]
 position = Vector2(146, 162)
 
 [node name="Lamp" parent="Furniture" instance=ExtResource("6_78p1u")]
 position = Vector2(145, 136)
-script = null
 
 [node name="Carpet" parent="Furniture" instance=ExtResource("7_1labu")]
 position = Vector2(325, 279)
@@ -385,15 +380,12 @@ position = Vector2(291, 120)
 
 [node name="CupboardClothes" parent="Furniture" instance=ExtResource("9_hyges")]
 position = Vector2(559, 179)
-script = null
 
 [node name="TrashCan" parent="Furniture" instance=ExtResource("10_aiccm")]
 position = Vector2(593, 342)
-script = null
 
 [node name="ToyChest" parent="Furniture" instance=ExtResource("11_adrqj")]
 position = Vector2(379, 169)
-script = null
 
 [node name="Toys" type="Node" parent="."]
 
@@ -425,3 +417,7 @@ position = Vector2(83, 297)
 position = Vector2(61, 260)
 
 [node name="TransitionScreen" parent="." instance=ExtResource("22_2ecrr")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(343, 191)
+zoom = Vector2(1.5, 1.5)

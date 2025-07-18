@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://djr67ljwq8y2"]
 
-[ext_resource type="Script" uid="uid://d36pp1gebfl83" path="res://Levels/RetryScreen/retry_screen.gd" id="1_xc1wu"]
+[ext_resource type="Script" uid="uid://d36pp1gebfl83" path="res://Levels/Screens/RetryScreen/retry_screen.gd" id="1_xc1wu"]
 [ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="2_jk4mg"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_47k1d"]

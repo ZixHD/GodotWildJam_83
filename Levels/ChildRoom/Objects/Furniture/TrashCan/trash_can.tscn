@@ -1,19 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://18pta1fi3uc7"]
+[gd_scene load_steps=3 format=3 uid="uid://18pta1fi3uc7"]
 
 [ext_resource type="Texture2D" uid="uid://d03tdyhjqwavn" path="res://Assets/Map/ChildRoom/furnitures/punaKanta1.png" id="1_alpy1"]
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_bgvmr"]
-[ext_resource type="Script" uid="uid://bjp5tfs6weqga" path="res://Levels/ChildRoom/Objects/Furniture/TrashCan/trash_can.gd" id="1_wr0p8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wr0p8"]
 radius = 7.0
 height = 18.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_alpy1"]
-radius = 8.66667
-
 [node name="TrashCan" type="StaticBody2D"]
 scale = Vector2(1.5, 1.5)
-script = ExtResource("1_wr0p8")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_alpy1")
@@ -21,10 +15,3 @@ texture = ExtResource("1_alpy1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_wr0p8")
-
-[node name="InteractionArea" parent="." instance=ExtResource("1_bgvmr")]
-texture_filter = 1
-scale = Vector2(1.5, 1.5)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-shape = SubResource("CircleShape2D_alpy1")

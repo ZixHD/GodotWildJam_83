@@ -1,6 +1,6 @@
 [gd_scene load_steps=14 format=3 uid="uid://bhhsgfpiopoku"]
 
-[ext_resource type="Script" uid="uid://d02hsrj6hce8w" path="res://Levels/ChildRoom/Child/player.gd" id="1_sai44"]
+[ext_resource type="Script" uid="uid://crhnhqx2cn0j3" path="res://Levels/ChildRoom/Child/player.gd" id="1_sai44"]
 [ext_resource type="Texture2D" uid="uid://cfa2xakfpausb" path="res://Assets/Map/ChildRoom/kid male anims.png" id="2_sai44"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3n6ls"]
@@ -176,7 +176,7 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_sai44")
 hframes = 7
 vframes = 6
-frame = 18
+frame = 4
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }

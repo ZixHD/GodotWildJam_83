@@ -1,13 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://coshexf7y828c"]
+[gd_scene load_steps=3 format=3 uid="uid://coshexf7y828c"]
 
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_hyu2l"]
 [ext_resource type="Texture2D" uid="uid://b860xv0kq0ojh" path="res://Assets/Map/ChildRoom/furnitures/ormar1skracen.png" id="1_kljl4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kljl4"]
 size = Vector2(96, 161)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsrj3"]
-size = Vector2(109, 168)
 
 [node name="CupboardShelfs" type="StaticBody2D"]
 texture_filter = 1
@@ -20,9 +16,3 @@ texture = ExtResource("1_kljl4")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-8, -9.5)
 shape = SubResource("RectangleShape2D_kljl4")
-
-[node name="InteractionArea" parent="." instance=ExtResource("1_hyu2l")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(-7.5, -10)
-shape = SubResource("RectangleShape2D_lsrj3")

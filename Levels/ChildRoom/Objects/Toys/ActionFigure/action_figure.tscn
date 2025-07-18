@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://37wodve28fyf"]
+[gd_scene load_steps=2 format=3 uid="uid://37wodve28fyf"]
 
 [ext_resource type="Texture2D" uid="uid://cdedvtr0jyjd5" path="res://Assets/Map/ChildRoom/toys/figure1.png" id="1_be4pv"]
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_xm3u6"]
 
 [node name="ActionFigure" type="StaticBody2D"]
 scale = Vector2(1.5, 1.5)
@@ -10,7 +9,3 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_be4pv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="InteractionArea" parent="." instance=ExtResource("1_xm3u6")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

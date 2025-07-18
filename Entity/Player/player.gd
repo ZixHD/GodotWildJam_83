@@ -155,7 +155,7 @@ func _ready() -> void:
 	
 
 func on_level_1_end() -> void:
-	const CANVAS_LAYER = preload("res://Levels/EndCutscene/end_cutscene.tscn")
+	const CANVAS_LAYER = preload("res://Levels/Screens/EndCutscene/end_cutscene.tscn")
 	var end_cutscene = CANVAS_LAYER.instantiate()
 	add_child(end_cutscene)
 	var tween = create_tween()
@@ -167,7 +167,7 @@ func on_level_1_end() -> void:
 	player_state = state.IDLE
 
 func on_level_2_end() -> void:
-	const CANVAS_LAYER = preload("res://Levels/EndCutscene/end_cutscene.tscn")
+	const CANVAS_LAYER = preload("res://Levels/Screens/EndCutscene/end_cutscene.tscn")
 	var end_cutscene = CANVAS_LAYER.instantiate()
 	add_child(end_cutscene)
 	var tween = create_tween()
@@ -177,7 +177,7 @@ func on_level_2_end() -> void:
 	tween.tween_property(self, "position", target_position, 0.7)
 
 func on_level_3_end() -> void:
-	const CANVAS_LAYER = preload("res://Levels/EndCutscene/end_cutscene.tscn")
+	const CANVAS_LAYER = preload("res://Levels/Screens/EndCutscene/end_cutscene.tscn")
 	var end_cutscene = CANVAS_LAYER.instantiate()
 	add_child(end_cutscene)
 	remove_child(camera_2d)

@@ -1,18 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://1fy13wl18xkr"]
+[gd_scene load_steps=3 format=3 uid="uid://1fy13wl18xkr"]
 
 [ext_resource type="Texture2D" uid="uid://dl5p1ylf5xwga" path="res://Assets/Map/ChildRoom/furnitures/ormanSIDE.png" id="1_4ac3w"]
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_gv7ix"]
-[ext_resource type="Script" uid="uid://c757yaea5mygr" path="res://Levels/ChildRoom/Objects/Furniture/CupboardClothes/cupboard_clothes.gd" id="1_sbg4a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbg4a"]
 size = Vector2(29, 64.5)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ac3w"]
-size = Vector2(40.5, 95)
-
 [node name="CupboardClothes" type="StaticBody2D"]
 scale = Vector2(2, 2)
-script = ExtResource("1_sbg4a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_4ac3w")
@@ -20,9 +14,3 @@ texture = ExtResource("1_4ac3w")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(11, 5.75)
 shape = SubResource("RectangleShape2D_sbg4a")
-
-[node name="InteractionArea" parent="." instance=ExtResource("1_gv7ix")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
-position = Vector2(10.25, -1.5)
-shape = SubResource("RectangleShape2D_4ac3w")

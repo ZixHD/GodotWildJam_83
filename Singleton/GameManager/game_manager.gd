@@ -4,8 +4,8 @@ extends Node
 const LEVEL_1 = preload("res://Levels/Level_1/level_1.tscn")
 const LEVEL_2 = preload("res://Levels/Level_2/level_2.tscn")
 const LEVEL_3 = preload("res://Levels/Level_3/level_3.tscn")
-const TRANSITION_SCREEN = preload("res://Levels/TransitionScreen/transition_screen.tscn")
-const RETRY_SCREEN = preload("res://Levels/RetryScreen/retry_screen.tscn")
+const TRANSITION_SCREEN = preload("res://Levels/Screens/TransitionScreen/transition_screen.tscn")
+const RETRY_SCREEN = preload("res://Levels/Screens/RetryScreen/retry_screen.tscn")
 const POWER_UP_TIMER = 10.0
 
 var score_multiplier = 0

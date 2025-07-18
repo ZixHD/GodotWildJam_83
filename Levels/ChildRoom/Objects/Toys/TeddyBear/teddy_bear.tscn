@@ -1,6 +1,5 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvdo35eghlrdv"]
+[gd_scene load_steps=2 format=3 uid="uid://cvdo35eghlrdv"]
 
-[ext_resource type="PackedScene" uid="uid://ln0u1gs5g330" path="res://Levels/FadeAway/interaction/interaction_area/interaction_area.tscn" id="1_a78kq"]
 [ext_resource type="Texture2D" uid="uid://dbed4l863rymf" path="res://Assets/Map/ChildRoom/toys/medved1.png" id="1_f5ip8"]
 
 [node name="TeddyBear" type="StaticBody2D"]
@@ -10,7 +9,3 @@ scale = Vector2(1.5, 1.5)
 texture = ExtResource("1_f5ip8")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-
-[node name="InteractionArea" parent="." instance=ExtResource("1_a78kq")]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]

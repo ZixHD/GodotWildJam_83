@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ddps3cvirlba7" path="res://Entity/Enemies/EnemyGhoul/enemy.tscn" id="5_fh3s5"]
 [ext_resource type="PackedScene" uid="uid://qu2p240wxjpk" path="res://Entity/Enemies/FireGhoul/fire_ghoul.tscn" id="6_ya7ph"]
 [ext_resource type="PackedScene" uid="uid://bsk34sbnictp6" path="res://Entity/Enemies/SlimeGhoul/slime_ghoul.tscn" id="7_7bnrq"]
-[ext_resource type="PackedScene" uid="uid://cyn1lctyiwmpo" path="res://Entity/Objects/static_body_2d.tscn" id="8_c1hxc"]
+[ext_resource type="PackedScene" uid="uid://cyn1lctyiwmpo" path="res://Entity/Objects/chandelier.tscn" id="8_c1hxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c1hxc"]
 texture = ExtResource("2_7bnrq")
