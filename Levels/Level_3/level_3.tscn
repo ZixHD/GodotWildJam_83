@@ -369,4 +369,6 @@ blend_mode = 1
 [node name="TheMoon" parent="." instance=ExtResource("5_fkytc")]
 position = Vector2(1190, 86)
 
+[node name="PlayerPosition" type="Marker2D" parent="."]
+
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

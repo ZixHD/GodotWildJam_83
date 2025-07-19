@@ -369,7 +369,7 @@ func _spawn_jump_dust() -> void:
 
 func _attack() -> void:
 	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack and can_throw:
-		player_ghost_state = ghost_state.SLIME
+		player_ghost_state = ghost_state.FIRE
 		match(player_ghost_state):
 			null:
 				_camera_shoot()
@@ -484,14 +484,12 @@ func _attack_change(power_up: String) -> void:
 		"Slime":
 			player_ghost_state = ghost_state.SLIME
 
-
 func _on_merry_hibtox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
 		body._on_hit()
 	
 func _on_throw() -> void:
 	can_throw = true
-
 #Sounds
 func playSound() -> void:
 	if player_state == state.DASHING:
