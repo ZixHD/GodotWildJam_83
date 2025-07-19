@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=4 uid="uid://qprr2bctn0jw"]
+[gd_scene load_steps=10 format=4 uid="uid://qprr2bctn0jw"]
 
 [ext_resource type="Texture2D" uid="uid://br0rhe2hwv3xj" path="res://Assets/Map/Levels/Level_3/level3.png" id="1_iigic"]
 [ext_resource type="Script" uid="uid://6qf6yt1o4s5" path="res://Levels/Level_3/level_3.gd" id="1_plwbi"]
 [ext_resource type="PackedScene" uid="uid://dgglgu1i2ne6l" path="res://Entity/Player/player.tscn" id="2_qy5sv"]
 [ext_resource type="AudioStream" uid="uid://bgrspac5ohvg5" path="res://Assets/Music/Boss_Approaching.mp3" id="4_l231p"]
 [ext_resource type="PackedScene" uid="uid://vjjlnmq22sin" path="res://Entity/Objects/the_moon.tscn" id="5_fkytc"]
+[ext_resource type="AudioStream" uid="uid://b23a5x5e7vi8f" path="res://Assets/Sounds/soundeffects/bossWalk.mp3" id="6_5fros"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qy5sv"]
 texture = ExtResource("1_iigic")
@@ -337,7 +338,7 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_qy5sv")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy5sv"]
-size = Vector2(892, 271)
+size = Vector2(957, 271)
 
 [node name="Level_3" type="Node2D"]
 script = ExtResource("1_plwbi")
@@ -351,10 +352,10 @@ tile_set = SubResource("TileSet_plwbi")
 position = Vector2(66, 296)
 
 [node name="Trigger" type="Area2D" parent="."]
-position = Vector2(791, 326)
+position = Vector2(1194, 208)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
-position = Vector2(436, -122.5)
+position = Vector2(15.5, -4)
 shape = SubResource("RectangleShape2D_qy5sv")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
@@ -370,5 +371,14 @@ blend_mode = 1
 position = Vector2(1190, 86)
 
 [node name="PlayerPosition" type="Marker2D" parent="."]
+position = Vector2(829, 293)
+
+[node name="BossWalk" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_5fros")
+volume_db = 22.0
+pitch_scale = 1.5
+parameters/looping = true
+
+[node name="ShakeTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]
