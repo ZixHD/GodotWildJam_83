@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://blt5l448pmisc"]
+[gd_scene load_steps=13 format=4 uid="uid://blt5l448pmisc"]
 
 [ext_resource type="Script" uid="uid://d0sdevhbm22tl" path="res://Levels/Level_1/level_1.gd" id="1_fh3s5"]
 [ext_resource type="Texture2D" uid="uid://dph8nxejr3e0v" path="res://Assets/Map/Levels/Level_1/level1.png" id="2_7bnrq"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://qu2p240wxjpk" path="res://Entity/Enemies/FireGhoul/fire_ghoul.tscn" id="6_ya7ph"]
 [ext_resource type="PackedScene" uid="uid://bsk34sbnictp6" path="res://Entity/Enemies/SlimeGhoul/slime_ghoul.tscn" id="7_7bnrq"]
 [ext_resource type="PackedScene" uid="uid://cyn1lctyiwmpo" path="res://Entity/Objects/chandelier.tscn" id="8_c1hxc"]
+[ext_resource type="AudioStream" uid="uid://d1ytgnshkf2ql" path="res://Assets/Music/Ghost_Hunding_Theme.mp3" id="9_x71t2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c1hxc"]
 texture = ExtResource("2_7bnrq")
@@ -798,5 +799,10 @@ shape = SubResource("RectangleShape2D_c1hxc")
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
 position = Vector2(1817, 345)
+
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_x71t2")
+volume_db = -10.0
+parameters/looping = true
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]

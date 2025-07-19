@@ -4,7 +4,9 @@ extends Area2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var player: CharacterBody2D = $"../Player"
 @onready var player_position: Marker2D = $PlayerPosition
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+var door_closing = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
@@ -22,6 +24,7 @@ func _on_body_entered(body: Node2D) -> void:
 		running_dust_timer.timeout.connect(_close_door)
 
 func _close_door() -> void:
+	door_closing = true
 	self.z_index = 1
 	animation_player.play_backwards("door_open")
 	await animation_player.animation_finished
@@ -37,3 +40,7 @@ func _close_door() -> void:
 	
 func _transition() -> void:
 	GameManager.load_transition()
+
+func playSound() -> void:
+	if !door_closing:
+		audio_stream_player_2d.play()

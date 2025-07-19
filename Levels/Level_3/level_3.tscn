@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://qprr2bctn0jw"]
+[gd_scene load_steps=8 format=4 uid="uid://qprr2bctn0jw"]
 
 [ext_resource type="Texture2D" uid="uid://br0rhe2hwv3xj" path="res://Assets/Map/Levels/Level_3/level3.png" id="1_iigic"]
 [ext_resource type="Script" uid="uid://6qf6yt1o4s5" path="res://Levels/Level_3/level_3.gd" id="1_plwbi"]
 [ext_resource type="PackedScene" uid="uid://dgglgu1i2ne6l" path="res://Entity/Player/player.tscn" id="2_qy5sv"]
+[ext_resource type="AudioStream" uid="uid://bgrspac5ohvg5" path="res://Assets/Music/Boss_Approaching.mp3" id="4_l231p"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qy5sv"]
 texture = ExtResource("1_iigic")
@@ -354,5 +355,10 @@ position = Vector2(791, 326)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Trigger"]
 position = Vector2(436, -122.5)
 shape = SubResource("RectangleShape2D_qy5sv")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_l231p")
+volume_db = -10.0
+parameters/looping = true
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

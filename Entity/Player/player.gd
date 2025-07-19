@@ -1,5 +1,12 @@
 extends CharacterBody2D
 
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $SoundEffects/AudioStreamPlayer2D
+@onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $SoundEffects/AudioStreamPlayer2D2
+@onready var audio_stream_player_2d_3: AudioStreamPlayer2D = $SoundEffects/AudioStreamPlayer2D3
+@onready var audio_stream_player_2d_4: AudioStreamPlayer2D = $SoundEffects/AudioStreamPlayer2D4
+@onready var audio_stream_player_2d_5: AudioStreamPlayer2D = $SoundEffects/AudioStreamPlayer2D5
+@onready var audio_stream_player_2d_6: AudioStreamPlayer2D = $SoundEffects/AudioStreamPlayer2D6
+
 @onready var dust_particles_running: GPUParticles2D = $DustParticlesRunning
 @onready var dust_particles_jump_left: GPUParticles2D = $DustParticlesJumpLeft
 @onready var dust_particles_jump_right: GPUParticles2D = $DustParticlesJumpRight
@@ -484,3 +491,19 @@ func _on_merry_hibtox_body_entered(body: Node2D) -> void:
 	
 func _on_throw() -> void:
 	can_throw = true
+
+#Sounds
+func playSound() -> void:
+	if player_state == state.DASHING:
+		audio_stream_player_2d_5.play()
+		return
+	
+	match player_ghost_state:
+		ghost_state.MERRY:
+			audio_stream_player_2d_4.play()
+		ghost_state.FIRE:
+			audio_stream_player_2d_2.play()
+		ghost_state.SLIME:
+			audio_stream_player_2d.play()
+		ghost_state.CAMERA:
+			audio_stream_player_2d_3.play()
