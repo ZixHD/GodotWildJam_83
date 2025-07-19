@@ -534,7 +534,7 @@ volume_db = -10.0
 
 [node name="AudioStreamPlayer2D5" type="AudioStreamPlayer2D" parent="SoundEffects"]
 stream = ExtResource("10_ve7px")
-volume_db = 10.0
+volume_db = 15.0
 
 [node name="AudioStreamPlayer2D6" type="AudioStreamPlayer2D" parent="SoundEffects"]
 stream = ExtResource("11_7skvd")

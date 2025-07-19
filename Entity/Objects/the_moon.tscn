@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://vjjlnmq22sin"]
+
+[ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="1_5n857"]
+[ext_resource type="Texture2D" uid="uid://ew11r3whj6ev" path="res://Assets/Effects/Light/circle.png" id="2_ejnvm"]
+
+[node name="TheMoon" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_5n857")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.580392, 1, 1, 1)
+texture = ExtResource("2_ejnvm")
+texture_scale = 3.0
