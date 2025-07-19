@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://ddps3cvirlba7" path="res://Entity/Enemies/EnemyGhoul/enemy.tscn" id="5_fh3s5"]
 [ext_resource type="PackedScene" uid="uid://qu2p240wxjpk" path="res://Entity/Enemies/FireGhoul/fire_ghoul.tscn" id="6_ya7ph"]
 [ext_resource type="PackedScene" uid="uid://bsk34sbnictp6" path="res://Entity/Enemies/SlimeGhoul/slime_ghoul.tscn" id="7_7bnrq"]
-[ext_resource type="PackedScene" uid="uid://cyn1lctyiwmpo" path="res://Entity/Objects/chandelier.tscn" id="8_c1hxc"]
+[ext_resource type="PackedScene" uid="uid://jnbptfas6555" path="res://Entity/Objects/chandelier.tscn" id="8_c1hxc"]
 [ext_resource type="Texture2D" uid="uid://ew11r3whj6ev" path="res://Assets/Effects/Light/circle.png" id="8_joalh"]
 [ext_resource type="PackedScene" uid="uid://dgvu04rsb6csp" path="res://Entity/Objects/torch.tscn" id="9_vbnv0"]
 [ext_resource type="AudioStream" uid="uid://d1ytgnshkf2ql" path="res://Assets/Music/Ghost_Hunding_Theme.mp3" id="9_x71t2"]
@@ -926,6 +926,9 @@ color = Color(0.0962047, 0.0962048, 0.0962047, 1)
 [node name="Elevator" parent="." instance=ExtResource("4_fh3s5")]
 position = Vector2(1971, 309)
 
+[node name="CollisionShape2D" parent="Elevator" index="1"]
+position = Vector2(-23.6666, 1)
+
 [node name="Enemies" type="Node" parent="."]
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("5_fh3s5")]
@@ -984,6 +987,8 @@ energy = 0.5
 blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
-position = Vector2(1817, 345)
+position = Vector2(1783, 355)
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]
+
+[editable path="Elevator"]

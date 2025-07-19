@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://cyn1lctyiwmpo"]
+[gd_scene load_steps=6 format=3 uid="uid://jnbptfas6555"]
 
+[ext_resource type="Script" uid="uid://dcminq3yqvdcn" path="res://Entity/Objects/chandelier.gd" id="1_bbqho"]
 [ext_resource type="Texture2D" uid="uid://dcxwn0aoti65i" path="res://Entity/Objects/Chandelier.png" id="1_t71re"]
 
 [sub_resource type="Animation" id="Animation_cgtlv"]
@@ -27,6 +28,7 @@ _data = {
 size = Vector2(80, 14.5)
 
 [node name="Chandelier" type="StaticBody2D"]
+script = ExtResource("1_bbqho")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
