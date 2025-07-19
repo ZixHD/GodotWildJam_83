@@ -5,9 +5,19 @@ extends Node
 @onready var animation_player: AnimationPlayer = $Player/AnimationPlayer
 @onready var canvas_animator: AnimationPlayer = $TransitionScreen/AnimationPlayer
 
-
+var moving: bool = false;
+signal dialog_finished
+	
 func _ready() -> void:
-	_move_player()
+	Textbox.connect("dialog_finished", Callable(self, "can_move"))
+	
+func _process(delta: float) -> void:
+	if moving:
+		moving = false
+		_move_player()
+	
+func can_move() -> void:
+	moving = true
 	
 func _move_player() -> void:
 	var tween = create_tween()
