@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://bprbh11yu18tg"]
+
+[ext_resource type="Script" uid="uid://cbmead8incmxl" path="res://Levels/Screens/MainMenu/main_menu.gd" id="1_ytv16"]
+[ext_resource type="Texture2D" uid="uid://xfi0uwxraj85" path="res://Assets/MenuScreen/EndScreen.jpg" id="2_8ekdx"]
+[ext_resource type="FontFile" uid="uid://bq15wrhiwgaxh" path="res://Assets/Font/Jakobs Handwriting 2.ttf" id="2_ul3hv"]
+[ext_resource type="FontFile" uid="uid://bsr15gs6gpe3h" path="res://Assets/Font/LowresPixel-Regular.otf" id="3_x3l10"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qpl8e"]
+font = ExtResource("2_ul3hv")
+font_size = 96
+font_color = Color(0, 0, 0, 1)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 649.0
+script = ExtResource("1_ytv16")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -1
+layout_mode = 0
+offset_right = 1156.0
+offset_bottom = 647.0
+texture = ExtResource("2_8ekdx")
+
+[node name="GhostHunter" type="Label" parent="."]
+layout_mode = 0
+offset_left = 320.0
+offset_top = 53.0
+offset_right = 829.0
+offset_bottom = 215.0
+text = "GHOST HUNTER"
+label_settings = SubResource("LabelSettings_qpl8e")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 424.0
+offset_top = 269.0
+offset_right = 714.0
+offset_bottom = 390.0
+theme_override_fonts/font = ExtResource("3_x3l10")
+theme_override_font_sizes/font_size = 32
+text = "PLAY GAME"
+
+[node name="Quit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1003.0
+offset_top = 573.0
+offset_right = 1116.0
+offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("3_x3l10")
+theme_override_font_sizes/font_size = 18
+text = "Quit
+"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

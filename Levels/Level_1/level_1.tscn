@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=4 uid="uid://blt5l448pmisc"]
+[gd_scene load_steps=35 format=4 uid="uid://blt5l448pmisc"]
 
 [ext_resource type="Script" uid="uid://d0sdevhbm22tl" path="res://Levels/Level_1/level_1.gd" id="1_fh3s5"]
 [ext_resource type="Texture2D" uid="uid://dph8nxejr3e0v" path="res://Assets/Map/Levels/Level_1/level1.png" id="2_7bnrq"]
@@ -909,6 +909,9 @@ sources/0 = SubResource("TileSetAtlasSource_c1hxc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1hxc"]
 size = Vector2(139.5, 18)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vbnv0"]
+size = Vector2(63, 385)
+
 [node name="Level_1" type="Node2D"]
 script = ExtResource("1_fh3s5")
 
@@ -985,5 +988,11 @@ blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
 position = Vector2(1817, 345)
+
+[node name="ElevatorWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ElevatorWall"]
+position = Vector2(2081.5, 195)
+shape = SubResource("RectangleShape2D_vbnv0")
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]

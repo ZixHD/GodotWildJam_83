@@ -1646,6 +1646,7 @@ position = Vector2(1411, 294)
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_i42ti")
 volume_db = -10.0
+parameters/looping = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.5

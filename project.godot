@@ -15,7 +15,7 @@ warnings/check_invalid_track_paths=false
 [application]
 
 config/name="GodotWildJam_83"
-run/main_scene="uid://d4co2bteh6s3d"
+run/main_scene="uid://bprbh11yu18tg"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://Assets/icon.svg"
 

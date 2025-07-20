@@ -1,10 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://djr67ljwq8y2"]
+[gd_scene load_steps=8 format=3 uid="uid://djr67ljwq8y2"]
 
 [ext_resource type="Script" uid="uid://d36pp1gebfl83" path="res://Levels/Screens/RetryScreen/retry_screen.gd" id="1_xc1wu"]
-[ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="2_jk4mg"]
+[ext_resource type="Texture2D" uid="uid://xfi0uwxraj85" path="res://Assets/MenuScreen/EndScreen.jpg" id="2_btfoq"]
+[ext_resource type="FontFile" uid="uid://bsr15gs6gpe3h" path="res://Assets/Font/LowresPixel-Regular.otf" id="3_uqvex"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_47k1d"]
-font_size = 30
+font = ExtResource("3_uqvex")
+font_size = 64
+font_color = Color(0, 0, 0, 1)
+outline_size = 10
+shadow_size = 15
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Animation" id="Animation_jk4mg"]
 length = 0.001
@@ -60,7 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_jk4mg")
+texture = ExtResource("2_btfoq")
 
 [node name="RetryLabel" type="Label" parent="."]
 layout_mode = 1
