@@ -392,7 +392,7 @@ anim_speed_min = 1.0
 anim_speed_max = 1.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rawpq"]
-size = Vector2(67.5, 41)
+size = Vector2(149.75, 82.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jksyu"]
 size = Vector2(36, 34)
@@ -485,12 +485,13 @@ enabled = false
 energy = 3.0
 shadow_enabled = true
 texture = ExtResource("4_viyt1")
+texture_scale = 2.0
 
 [node name="AttackRange" type="Area2D" parent="."]
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(-75, 0)
+position = Vector2(-116.125, -20.75)
 shape = SubResource("RectangleShape2D_rawpq")
 disabled = true
 

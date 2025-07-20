@@ -11,18 +11,24 @@ var door_closing = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.on_level_1_end(player_position.global_position)
-#		play the animation of the elevator closing
-#		on animation_finished emit the signal and call GameManager.next_scene
-		animation_player.play("door_open")
-		#player.global_position = player_position.global_position
-		var running_dust_timer = Timer.new()
-		running_dust_timer.wait_time = 2
-		running_dust_timer.one_shot = true
-		running_dust_timer.autostart = true
-		add_child(running_dust_timer)
-		running_dust_timer.start()
-		running_dust_timer.timeout.connect(_close_door)
+		# Check if any enemies remain
+		var enemies = get_tree().get_nodes_in_group("Enemy")
+		if enemies.size() == 0:
+			# No enemies left, allow proceeding
+			body.on_level_1_end(player_position.global_position)
+			animation_player.play("door_open")
+			
+			var running_dust_timer = Timer.new()
+			running_dust_timer.wait_time = 2
+			running_dust_timer.one_shot = true
+			running_dust_timer.autostart = true
+			add_child(running_dust_timer)
+			running_dust_timer.start()
+			running_dust_timer.timeout.connect(_close_door)
+		else:
+			# Enemies still remain, block progress
+			print("Enemies still remain! Defeat them before proceeding.")
+
 
 func _close_door() -> void:
 	door_closing = true

@@ -119,6 +119,7 @@ rotation = 1.5708
 target_position = Vector2(1.01848e-05, 233)
 
 [node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.5
 
 [node name="FireBallSpawn" type="Marker2D" parent="."]
 position = Vector2(-5, -20)

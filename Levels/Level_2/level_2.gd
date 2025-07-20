@@ -12,4 +12,9 @@ func _ready() -> void:
 
 func _on_level_exit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.on_level_2_end()
+		var enemies = get_tree().get_nodes_in_group("Enemy")
+		if enemies.size() == 0:
+			# No enemies left, allow exit
+			body.on_level_2_end()
+		else:
+			print("Enemies still remain! Defeat them before proceeding.")

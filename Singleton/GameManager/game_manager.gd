@@ -10,7 +10,7 @@ const RETRY_SCREEN = preload("res://Levels/Screens/RetryScreen/retry_screen.tscn
 const level2_json = "res://Utils/Dialogue/Json/Level_2/level_2.json"
 const level3_json = "res://Utils/Dialogue/Json/Level_3/level_3.json"
 const levelf_json = "res://Utils/Dialogue/Json/Level_F/level_F.json"
-const POWER_UP_TIMER = 10.0
+const POWER_UP_TIMER = 15.0
 
 var score_multiplier = 0
 var level_timer = 0
