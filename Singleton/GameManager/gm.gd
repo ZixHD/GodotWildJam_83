@@ -28,41 +28,23 @@ signal next_level
 signal retry
 
 func _ready() -> void:
-	load_scene(3)
+	load_scene(scene_index)
 
 func load_scene(index: int) -> void:
 
 	if current_scene_instance:
 		current_scene_instance.queue_free()
-	if transition_instance:
-		transition_instance.queue_free()
-	if index != 0:
-		_load_dialogue(index)
 	current_scene_instance = scenes[index].instantiate()
 	add_child(current_scene_instance)
+	if index > 3:
+		Textbox.set_font()
 	
-func _load_dialogue(index: int) -> void:
-	var json_file: String = "res://Utils/Dialogue/Json/Level_" + str(index) + "/level_" + str(index) + ".json";
-	#DialogueManager.load_dialog_data(json_file)
-	#var dialogue: Array[Dictionary] = DialogueManager.get_message()
-	#for dia in dialogue:
-		#Textbox.queue_text(dia)
-	
+
 	
 	
 func next_scene() -> void:
 	scene_index += 1
 	load_scene(scene_index)
-#	get the new scene after removing current
-func load_transition() -> void:
-	transition_instance = TRANSITION_SCREEN.instantiate()
-	add_child(transition_instance)
-	var gm = get_tree().get_root().get_node("Gm")
-	var level = gm.get_node("Level_" + str(scene_index - 2))
-	if level:
-		level.queue_free()
-	else:
-		print("Level" + str(scene_index - 1) + " node not found!")
 	
 func load_retry_scene() -> void:
 	retry_instance = RETRY_SCREEN.instantiate()

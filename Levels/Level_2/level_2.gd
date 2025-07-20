@@ -1,11 +1,10 @@
 extends Node2D
 
 @onready var background_music: AudioStreamPlayer = $BackgroundMusic
-@onready var animation_player: AnimationPlayer = $Elevator/AnimationPlayer
+
 
 
 func _ready() -> void:
-	animation_player.play("door_open")
 	
 	$BackgroundMusic.play()
 	var camera = $Player/Camera2D
@@ -33,6 +32,6 @@ func _on_level_exit_body_entered(body: Node2D) -> void:
 
 func _transition() -> void:
 	var game_manager = get_tree().get_root().get_node("Gm")
-	game_manager.load_transition()
+	game_manager.next_scene()
 		
 	

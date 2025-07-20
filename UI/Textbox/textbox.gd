@@ -5,7 +5,7 @@ extends CanvasLayer
 @onready var start_symbol: Label = $TextboxContainer/MarginContainer/HBoxContainer/Start
 @onready var end_symbol: Label = $TextboxContainer/MarginContainer/HBoxContainer/End
 
-
+const LOWRES_PIXEL_REGULAR = preload("res://Assets/Font/LowresPixel-Regular.otf")
 
 
 
@@ -22,6 +22,7 @@ var text_queue = []
 var active_tween = null
 var speaker: String = ""
 var text: String = ""
+var font_flag: bool = false;
 signal dialog_started
 signal dialog_finished
 # Called when the node enters the scene tree for the first time.
@@ -56,7 +57,10 @@ func _update_state():
 func _process(_delta):
 	_update_state()
 
-
+func set_font() ->void:
+	start_symbol.add_theme_font_override("font", LOWRES_PIXEL_REGULAR)
+	label.add_theme_font_override("font", LOWRES_PIXEL_REGULAR)
+	
 func queue_text(new_text):
 	if(current_state != State.FINISHED):
 		text_queue.push_back(new_text)

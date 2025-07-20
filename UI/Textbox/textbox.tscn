@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://b144ue8fbi2cx"]
+[gd_scene load_steps=5 format=3 uid="uid://b144ue8fbi2cx"]
 
 [ext_resource type="Script" uid="uid://d1b5lx3kidasm" path="res://UI/Textbox/textbox.gd" id="1_e2qpx"]
-[ext_resource type="FontFile" uid="uid://bsr15gs6gpe3h" path="res://Assets/Font/LowresPixel-Regular.otf" id="2_8knlh"]
 [ext_resource type="FontFile" uid="uid://bq15wrhiwgaxh" path="res://Assets/Font/Jakobs Handwriting 2.ttf" id="2_e2qpx"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8knlh"]
@@ -58,8 +57,8 @@ custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 0
-theme_override_fonts/font = ExtResource("2_8knlh")
-theme_override_font_sizes/font_size = 25
+theme_override_fonts/font = ExtResource("2_e2qpx")
+theme_override_font_sizes/font_size = 40
 text = "^"
 horizontal_alignment = 1
 vertical_alignment = 1
