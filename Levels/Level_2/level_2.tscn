@@ -1626,13 +1626,10 @@ shape = SubResource("RectangleShape2D_0qv2m")
 position = Vector2(1412, 918)
 
 [node name="FireGhoul2" parent="Enemies" instance=ExtResource("3_orgcb")]
-position = Vector2(980, 314)
-
-[node name="FireGhoul3" parent="Enemies" instance=ExtResource("3_orgcb")]
-position = Vector2(56, 112)
+position = Vector2(967, 297)
 
 [node name="SlimeGhoul" parent="Enemies" instance=ExtResource("4_i42ti")]
-position = Vector2(1018, 1213)
+position = Vector2(997, 1218)
 
 [node name="SlimeGhoul2" parent="Enemies" instance=ExtResource("4_i42ti")]
 position = Vector2(200, 1363)
@@ -1640,8 +1637,14 @@ position = Vector2(200, 1363)
 [node name="Merry" parent="Enemies" instance=ExtResource("5_eskua")]
 position = Vector2(814, 725)
 
+[node name="Merry2" parent="Enemies" instance=ExtResource("5_eskua")]
+position = Vector2(1546, 578)
+
+[node name="FireGhoul4" parent="Enemies" instance=ExtResource("3_orgcb")]
+position = Vector2(83, 627)
+
 [node name="Player" parent="." instance=ExtResource("2_r0dct")]
-position = Vector2(1411, 294)
+position = Vector2(1386, 1342)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_i42ti")
@@ -1661,12 +1664,35 @@ energy = 2.0
 shadow_enabled = true
 texture = ExtResource("9_80bhs")
 texture_scale = 1.5
+metadata/_edit_lock_ = true
 
 [node name="Chandelier2" parent="." instance=ExtResource("8_eskua")]
-position = Vector2(1022, 480)
+position = Vector2(1407, 768)
 metadata/_edit_group_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Chandelier2"]
+color = Color(0.737255, 0.454902, 0, 1)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("9_80bhs")
+texture_scale = 1.5
+
+[node name="Chandelier3" parent="." instance=ExtResource("8_eskua")]
+position = Vector2(1056, 482)
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Chandelier3"]
+color = Color(0.737255, 0.454902, 0, 1)
+energy = 2.0
+shadow_enabled = true
+texture = ExtResource("9_80bhs")
+texture_scale = 1.5
+
+[node name="Chandelier4" parent="." instance=ExtResource("8_eskua")]
+position = Vector2(364, 291)
+metadata/_edit_group_ = true
+
+[node name="PointLight2D" type="PointLight2D" parent="Chandelier4"]
 color = Color(0.737255, 0.454902, 0, 1)
 energy = 2.0
 shadow_enabled = true
@@ -1699,15 +1725,7 @@ position = Vector2(436, 707)
 
 [node name="Torch7" parent="." instance=ExtResource("10_jy8j1")]
 z_index = -1
-position = Vector2(101, 558)
-
-[node name="Torch8" parent="." instance=ExtResource("10_jy8j1")]
-z_index = -1
-position = Vector2(430, 424)
-
-[node name="Torch9" parent="." instance=ExtResource("10_jy8j1")]
-z_index = -1
-position = Vector2(89, 286)
+position = Vector2(86, 544)
 
 [node name="Torch10" parent="." instance=ExtResource("10_jy8j1")]
 z_index = -1
@@ -1719,5 +1737,6 @@ position = Vector2(1062, 876)
 
 [node name="TheMoon" parent="." instance=ExtResource("11_l5wlt")]
 position = Vector2(1171, 51)
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="Level_Exit" to="." method="_on_level_exit_body_entered"]

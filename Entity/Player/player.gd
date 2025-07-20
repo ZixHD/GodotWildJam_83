@@ -376,7 +376,8 @@ func _attack() -> void:
 	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack and can_throw:
 		#player_ghost_state = ghost_state.FIRE
 		match(player_ghost_state):
-			null:
+			ghost_state.CAMERA:
+				print(">> Current ghost state:", player_ghost_state)
 				_camera_shoot()
 			ghost_state.MERRY:
 				print("merri")
@@ -400,8 +401,8 @@ func _camera_shoot() -> void:
 	elif !sprite_2d.is_flipped_h():
 		point_light_2d.global_position = marker_2d_left.global_position 
 		point_light_2d.rotation_degrees = 90.0 
-		attack_range.global_position = point_light_2d.global_position 
-		
+		attack_range.global_position = point_light_2d.global_position
+
 func _merry_attack() -> void:
 	if !is_on_floor():
 		can_attack = false
