@@ -53,5 +53,6 @@ func _transition() -> void:
 func playSound() -> void:
 	if !door_closing:
 		audio_stream_player_2d.play()
-	else:
-		$AudioStreamPlayer2D2.play()
+
+func playSound2() -> void:
+	$AudioStreamPlayer2D2.play()
