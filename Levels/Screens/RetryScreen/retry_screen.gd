@@ -7,5 +7,6 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("enter"):
-		GameManager.retry_level()
+		var game_manager = get_tree().get_root().get_node("Gm")
+		game_manager.retry_level()
 		

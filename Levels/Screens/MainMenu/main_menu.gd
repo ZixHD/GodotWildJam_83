@@ -1,7 +1,8 @@
 extends Control
 
 func _on_play_pressed() -> void:
-	get_tree().change_scene_to_file("res://Levels/Level_1/level_1.tscn")
+	var game_manager = get_tree().get_root().get_node("Gm")
+	game_manager.next_scene()
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()

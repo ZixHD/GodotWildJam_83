@@ -27,8 +27,13 @@ func _process(delta: float) -> void:
 	elif index == 3:
 		picture_3.visible = false;
 
+
 func _play() -> void:
 	can_play = true;
+
+func play_next_scene() -> void:
+	var game_manager = get_tree().get_root().get_node("Gm")
+	game_manager.next_scene()
 	
 func _load_dialogue() -> void:
 	var json_file: String = "res://Utils/Dialogue/Json/Level_0/level_0" + str(index) + ".json";

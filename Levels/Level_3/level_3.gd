@@ -57,5 +57,5 @@ func _load_dialogue() -> void:
 	var json_file: String = "res://Utils/Dialogue/Json/Level_3/level_3.json";
 	DialogueManager.load_dialog_data(json_file)
 	var dialogue: Array[Dictionary] = DialogueManager.get_message()
-	for dia in dialogue:
-		Textbox.queue_text(dia)
+	#for dia in dialogue:
+		#Textbox.queue_text(dia)

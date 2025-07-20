@@ -7,4 +7,5 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("enter"):
-		GameManager.next_scene()
+		var game_manager = get_tree().get_root().get_node("Gm")
+		game_manager.next_scene()

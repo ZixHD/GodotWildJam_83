@@ -966,7 +966,6 @@ metadata/_edit_lock_ = true
 [node name="Torch" parent="Objects" instance=ExtResource("9_vbnv0")]
 z_index = -1
 position = Vector2(1666, 135)
-metadata/_edit_lock_ = true
 
 [node name="Torch2" parent="Objects" instance=ExtResource("9_vbnv0")]
 z_index = -1
@@ -1002,7 +1001,7 @@ energy = 0.5
 blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
-position = Vector2(98, 474)
+position = Vector2(1792, 361)
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]
 

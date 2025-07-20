@@ -40,7 +40,8 @@ func _close_door() -> void:
 
 	
 func _transition() -> void:
-	GameManager.load_transition()
+	var game_manager = get_tree().get_root().get_node("Gm")
+	game_manager.load_transition()
 
 func playSound() -> void:
 	if !door_closing:

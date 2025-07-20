@@ -1,10 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://bwdrnod7grglo"]
+[gd_scene load_steps=10 format=3 uid="uid://bwdrnod7grglo"]
 
 [ext_resource type="Script" uid="uid://d2jxt7vu6p8n3" path="res://Levels/Screens/IntroScreen/intro_screen.gd" id="1_1gt8d"]
 [ext_resource type="Texture2D" uid="uid://dxjtliwxw3b2t" path="res://Assets/MenuScreen/IntroScreen/Dan_1.jpg" id="1_5l21x"]
 [ext_resource type="Texture2D" uid="uid://bbmo03psrwi0b" path="res://Assets/MenuScreen/IntroScreen/Dan_2.jpg" id="2_md8pw"]
 [ext_resource type="Texture2D" uid="uid://coqulkeosdbdp" path="res://Assets/MenuScreen/IntroScreen/Dan_3.jpg" id="4_nrmhr"]
-[ext_resource type="PackedScene" uid="uid://d2ykbvnjacn2i" path="res://UI/Textbox/textbox.tscn" id="5_nrmhr"]
 
 [sub_resource type="Animation" id="Animation_absey"]
 resource_name = "Intro_0"
@@ -52,6 +51,20 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"play_next_scene"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_tutex"]
@@ -137,5 +150,3 @@ expand_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_iuums")
 }
-
-[node name="Textbox" parent="." instance=ExtResource("5_nrmhr")]

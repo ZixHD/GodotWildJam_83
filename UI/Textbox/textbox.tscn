@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://d2ykbvnjacn2i"]
+[gd_scene load_steps=6 format=3 uid="uid://b144ue8fbi2cx"]
 
 [ext_resource type="Script" uid="uid://d1b5lx3kidasm" path="res://UI/Textbox/textbox.gd" id="1_e2qpx"]
 [ext_resource type="FontFile" uid="uid://bsr15gs6gpe3h" path="res://Assets/Font/LowresPixel-Regular.otf" id="2_8knlh"]

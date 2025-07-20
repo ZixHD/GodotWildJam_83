@@ -83,7 +83,7 @@ var level_end_flag: bool = false;
 var can_attack: bool = false;
 var power_up_name: String = "";
 var can_throw: bool = true;
-
+var game_manager
 
 func _update_animation() -> void:
 
@@ -114,7 +114,7 @@ func _update_animation() -> void:
 		state.DEAD:
 			await get_tree().create_timer(1.0).timeout;
 			queue_free()
-			GameManager.load_retry_scene()
+			game_manager.load_retry_scene()
 			print("")
 
 func _update_ghost_animation() -> void:
@@ -129,6 +129,8 @@ func _update_ghost_animation() -> void:
 			animation_player.play("slime_attack")
 			
 func _ready() -> void:
+	
+	game_manager = get_tree().get_root().get_node("Gm")
 	
 	jump_buffer_timer = Timer.new();
 	add_child(jump_buffer_timer);
@@ -147,7 +149,7 @@ func _ready() -> void:
 	running_dust_timer.timeout.connect(_spawn_dust)
 	
 	
-	power_up_timer.wait_time = GameManager.POWER_UP_TIMER
+	power_up_timer.wait_time = game_manager.POWER_UP_TIMER
 	power_up_timer.one_shot = true
 	power_up_timer.autostart = false;
 	power_up_timer.timeout.connect(on_power_expired)

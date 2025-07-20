@@ -9,7 +9,8 @@ var moving: bool = false;
 signal dialog_finished
 	
 func _ready() -> void:
-	Textbox.connect("dialog_finished", Callable(self, "can_move"))
+#	Textbox.connect("dialog_finished", Callable(self, "can_move"))
+	print("123")
 	
 func _process(delta: float) -> void:
 	if moving:
