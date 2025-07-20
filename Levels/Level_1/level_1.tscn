@@ -939,7 +939,7 @@ position = Vector2(538, 195)
 position = Vector2(1437, 358)
 
 [node name="SlimeGhoul" parent="Enemies" instance=ExtResource("7_7bnrq")]
-position = Vector2(511, 499)
+position = Vector2(564, 497)
 
 [node name="Merry" parent="Enemies" instance=ExtResource("7_fhktt")]
 position = Vector2(1207, 53)
@@ -1002,7 +1002,7 @@ energy = 0.5
 blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
-position = Vector2(98, 474)
+position = Vector2(1698, 352)
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]
 

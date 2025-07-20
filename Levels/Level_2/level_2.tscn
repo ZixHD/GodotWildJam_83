@@ -1640,8 +1640,17 @@ position = Vector2(200, 1363)
 [node name="Merry" parent="Enemies" instance=ExtResource("5_eskua")]
 position = Vector2(814, 725)
 
+[node name="Merry2" parent="Enemies" instance=ExtResource("5_eskua")]
+position = Vector2(1546, 578)
+
+[node name="FireGhoul4" parent="Enemies" instance=ExtResource("3_orgcb")]
+position = Vector2(83, 627)
+
+[node name="FireGhoul5" parent="Enemies" instance=ExtResource("3_orgcb")]
+position = Vector2(442, 1058)
+
 [node name="Player" parent="." instance=ExtResource("2_r0dct")]
-position = Vector2(1411, 294)
+position = Vector2(1454, 1337)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_i42ti")
@@ -1665,6 +1674,7 @@ texture_scale = 1.5
 [node name="Chandelier2" parent="." instance=ExtResource("8_eskua")]
 position = Vector2(1022, 480)
 metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="Chandelier2"]
 color = Color(0.737255, 0.454902, 0, 1)
@@ -1719,5 +1729,6 @@ position = Vector2(1062, 876)
 
 [node name="TheMoon" parent="." instance=ExtResource("11_l5wlt")]
 position = Vector2(1171, 51)
+metadata/_edit_lock_ = true
 
 [connection signal="body_entered" from="Level_Exit" to="." method="_on_level_exit_body_entered"]
