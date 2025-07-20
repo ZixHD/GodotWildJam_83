@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bwdrnod7grglo"]
+[gd_scene load_steps=11 format=3 uid="uid://bwdrnod7grglo"]
 
 [ext_resource type="Script" uid="uid://d2jxt7vu6p8n3" path="res://Levels/Screens/IntroScreen/intro_screen.gd" id="1_1gt8d"]
 [ext_resource type="Texture2D" uid="uid://dxjtliwxw3b2t" path="res://Assets/MenuScreen/IntroScreen/Dan_1.jpg" id="1_5l21x"]
 [ext_resource type="Texture2D" uid="uid://bbmo03psrwi0b" path="res://Assets/MenuScreen/IntroScreen/Dan_2.jpg" id="2_md8pw"]
 [ext_resource type="Texture2D" uid="uid://coqulkeosdbdp" path="res://Assets/MenuScreen/IntroScreen/Dan_3.jpg" id="4_nrmhr"]
+[ext_resource type="AudioStream" uid="uid://xejd0ahe3ckk" path="res://Assets/Music/Menu_Theme.mp3" id="5_nrmhr"]
 
 [sub_resource type="Animation" id="Animation_absey"]
 resource_name = "Intro_0"
@@ -150,3 +151,8 @@ expand_mode = 2
 libraries = {
 &"": SubResource("AnimationLibrary_iuums")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_nrmhr")
+volume_db = 15.0
+parameters/looping = true

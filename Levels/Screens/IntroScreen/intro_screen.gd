@@ -4,12 +4,14 @@ extends Node
 @onready var picture_1: TextureRect = $Picture_1
 @onready var picture_2: TextureRect = $Picture_2
 @onready var picture_3: TextureRect = $Picture_3
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 var index: int = 0;
 var can_play: bool = false;
 
 func _ready() -> void:
 	_load_dialogue()
+	audio_stream_player_2d.play()
 	Textbox.connect("dialog_finished", Callable(self, "_play"))
 	
 func _process(delta: float) -> void:

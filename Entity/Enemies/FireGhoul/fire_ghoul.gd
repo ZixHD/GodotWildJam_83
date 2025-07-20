@@ -114,7 +114,8 @@ func _in_range_check() -> void:
 		in_range = false
 		
 func _attack_check() -> void:
-	can_attack = true
+	if in_range:
+		can_attack = true
 	
 func _on_hit() -> void:
 	var explosion_scene = preload("res://Assets/Effects/Particles/explosion.tscn")

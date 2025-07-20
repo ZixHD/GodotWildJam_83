@@ -35,9 +35,4 @@ func _transition() -> void:
 	var game_manager = get_tree().get_root().get_node("Gm")
 	game_manager.load_transition()
 		
-
-
-func _on_elevator_body_entered(body: Node2D) -> void:
-	body.set_level_end()
-	await get_tree().create_timer(2).timeout
-	body.set_level_end()
+	

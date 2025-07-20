@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ew11r3whj6ev" path="res://Assets/Effects/Light/circle.png" id="9_80bhs"]
 [ext_resource type="PackedScene" uid="uid://dgvu04rsb6csp" path="res://Entity/Objects/torch.tscn" id="10_jy8j1"]
 [ext_resource type="PackedScene" uid="uid://vjjlnmq22sin" path="res://Entity/Objects/the_moon.tscn" id="11_l5wlt"]
-[ext_resource type="PackedScene" uid="uid://dektuktqh6ru7" path="res://Entity/Elevator/elevator.tscn" id="12_2l37n"]
+[ext_resource type="PackedScene" uid="uid://bexvjbmewccgd" path="res://UI/Wildcard/elevatorv_2.tscn" id="12_2l37n"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_80bhs"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1644,9 +1644,6 @@ position = Vector2(1546, 578)
 [node name="FireGhoul4" parent="Enemies" instance=ExtResource("3_orgcb")]
 position = Vector2(83, 627)
 
-[node name="Player" parent="." instance=ExtResource("2_r0dct")]
-position = Vector2(1537, 1345)
-
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_i42ti")
 volume_db = -10.0
@@ -1739,8 +1736,16 @@ position = Vector2(1062, 876)
 [node name="TheMoon" parent="." instance=ExtResource("11_l5wlt")]
 position = Vector2(1617, 95)
 
-[node name="Elevator" parent="." instance=ExtResource("12_2l37n")]
-position = Vector2(1537, 1316)
+[node name="Elevatorv2" parent="." instance=ExtResource("12_2l37n")]
+position = Vector2(1536, 1333)
+
+[node name="Sprite2D" parent="Elevatorv2" index="0"]
+position = Vector2(1.33333, -11.3333)
+scale = Vector2(2, 2)
+
+[node name="Player" parent="." instance=ExtResource("2_r0dct")]
+position = Vector2(1537, 1345)
 
 [connection signal="body_entered" from="Level_Exit" to="." method="_on_level_exit_body_entered"]
-[connection signal="body_entered" from="Elevator" to="." method="_on_elevator_body_entered"]
+
+[editable path="Elevatorv2"]

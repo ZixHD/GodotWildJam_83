@@ -28,7 +28,7 @@ signal next_level
 signal retry
 
 func _ready() -> void:
-	load_scene(scene_index)
+	load_scene(3)
 
 func load_scene(index: int) -> void:
 

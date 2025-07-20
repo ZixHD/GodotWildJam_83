@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bexvjbmewccgd"]
+[gd_scene load_steps=7 format=3 uid="uid://bexvjbmewccgd"]
 
 [ext_resource type="Script" uid="uid://px5cvvcsyscs" path="res://UI/Wildcard/elevatorv_2.gd" id="1_d8j1a"]
 [ext_resource type="Texture2D" uid="uid://b4k0p3ltan4f1" path="res://UI/Wildcard/elevator.png" id="2_pq6xr"]
@@ -55,19 +55,16 @@ _data = {
 &"idle": SubResource("Animation_lchoy")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pq6xr"]
-size = Vector2(46, 53.3333)
-
 [node name="Elevatorv2" type="Area2D"]
 scale = Vector2(1.5, 1.5)
 script = ExtResource("1_d8j1a")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1
+scale = Vector2(1.5, 1.5)
 texture = ExtResource("2_pq6xr")
 hframes = 3
 vframes = 3
-frame = 1
 metadata/_aseprite_wizard_interface_config_ = {
 "pending_changes": {}
 }
@@ -94,9 +91,5 @@ libraries = {
 stream = ExtResource("3_pq6xr")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.666667)
-shape = SubResource("RectangleShape2D_pq6xr")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
