@@ -13,8 +13,20 @@ func _ready() -> void:
 func _on_level_exit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
-		if enemies.size() == 0:
+		#if enemies.size() == 0:
 			# No enemies left, allow exit
-			body.on_level_2_end()
-		else:
-			print("Enemies still remain! Defeat them before proceeding.")
+		body.on_level_2_end()
+		var end_timer = Timer.new()
+		end_timer.wait_time = 1.2
+		end_timer.one_shot = true
+		end_timer.autostart = true
+		add_child(end_timer)
+		end_timer.start()
+		end_timer.timeout.connect(_transition)
+	#else:
+			#print("Enemies still remain! Defeat them before proceeding.")
+
+func _transition() -> void:
+	var game_manager = get_tree().get_root().get_node("Gm")
+	game_manager.load_transition()
+		

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://qprr2bctn0jw"]
+[gd_scene load_steps=13 format=4 uid="uid://qprr2bctn0jw"]
 
 [ext_resource type="Texture2D" uid="uid://br0rhe2hwv3xj" path="res://Assets/Map/Levels/Level_3/level3.png" id="1_iigic"]
 [ext_resource type="Script" uid="uid://6qf6yt1o4s5" path="res://Levels/Level_3/level_3.gd" id="1_plwbi"]
@@ -340,6 +340,43 @@ sources/0 = SubResource("TileSetAtlasSource_qy5sv")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qy5sv"]
 size = Vector2(957, 271)
 
+[sub_resource type="Animation" id="Animation_5fros"]
+resource_name = "fade_to_black"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6yi8a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4uxci"]
+_data = {
+&"RESET": SubResource("Animation_6yi8a"),
+&"fade_to_black": SubResource("Animation_5fros")
+}
+
 [node name="Level_3" type="Node2D"]
 script = ExtResource("1_plwbi")
 
@@ -380,5 +417,23 @@ pitch_scale = 1.5
 parameters/looping = true
 
 [node name="ShakeTimer" type="Timer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+modulate = Color(0, 0, 0, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 348.0
+offset_top = -236.0
+offset_right = 1348.0
+offset_bottom = 764.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_4uxci")
+}
 
 [connection signal="body_entered" from="Trigger" to="." method="_on_trigger_body_entered"]

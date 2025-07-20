@@ -185,11 +185,10 @@ func on_level_2_end() -> void:
 	tween.tween_property(self, "position", target_position, 0.7)
 
 func on_level_3_end(player_position: Vector2) -> void:
-	const CANVAS_LAYER = preload("res://Levels/Screens/EndCutscene/end_cutscene.tscn")
-	var end_cutscene = CANVAS_LAYER.instantiate()
-	add_child(end_cutscene)
 	remove_child(camera_2d)
-	get_tree().current_scene.add_child(camera_2d)
+	#get_tree().current_scene.add_child(camera_2d)
+	var level_3 = get_node("/root/Gm/Level_3")
+	level_3.add_child(camera_2d)
 	camera_2d.global_position = self.global_position
 	level_end_flag = true
 	var tween = create_tween()

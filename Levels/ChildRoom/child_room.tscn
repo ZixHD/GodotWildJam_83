@@ -421,3 +421,9 @@ position = Vector2(61, 260)
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(343, 191)
 zoom = Vector2(1.5, 1.5)
+
+[node name="FirstStop" type="Marker2D" parent="."]
+position = Vector2(531, 265)
+
+[node name="SecondStop" type="Marker2D" parent="."]
+position = Vector2(534, 405)

@@ -33,7 +33,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_lldqn"]
 resource_name = "fade_to_normal"
-length = 0.25
+length = 1.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -41,7 +41,7 @@ tracks/0/path = NodePath("ColorRect:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.248589),
+"times": PackedFloat32Array(0, 1.4),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(0.00833333, 0.00833333, 0.00833333, 0.991667), Color(0.00784314, 0.00784314, 0.00784314, 0)]

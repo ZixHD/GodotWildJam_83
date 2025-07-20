@@ -9,7 +9,7 @@ const INTRO_SCREEN = preload("res://Levels/Screens/IntroScreen/intro_screen.tscn
 const MAIN_MENU = preload("res://Levels/Screens/MainMenu/main_menu.tscn")
 const RETRY_SCREEN = preload("res://Levels/Screens/RetryScreen/retry_screen.tscn")
 const TRANSITION_SCREEN = preload("res://Levels/Screens/TransitionScreen/transition_screen.tscn")
-const LEVEL_F = preload("res://Levels/ChildRoom/Child/player.tscn")
+const LEVEL_F = preload("res://Levels/ChildRoom/child_room.tscn")
 const POWER_UP_TIMER = 10.0
 
 var score_multiplier = 0
@@ -22,6 +22,7 @@ var scenes: Array[PackedScene] = [
 var current_scene_instance: Node = null
 var transition_instance: Node = null
 var retry_instance: Node = null
+var child_room = null
 signal next_level
 signal retry
 
@@ -75,3 +76,16 @@ func retry_level() -> void:
 		retry_instance.queue_free()
 	
 	#self.load_scene(0)
+	
+func load_childroom() -> void:
+	if current_scene_instance:
+		current_scene_instance.queue_free()
+	child_room = LEVEL_F.instantiate() 
+	add_child(child_room)
+
+func load_credits() -> void:
+	if child_room:
+		child_room.queue_free()
+	const END_CREDITS = preload("res://Levels/Screens/EndCredits/end_credits.tscn")
+	var end = END_CREDITS.instantiate()
+	add_child(end)
