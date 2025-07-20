@@ -1,13 +1,38 @@
-[gd_scene load_steps=3 format=3 uid="uid://dgvu04rsb6csp"]
+[gd_scene load_steps=6 format=3 uid="uid://dgvu04rsb6csp"]
 
-[ext_resource type="Texture2D" uid="uid://ds4oqbterd03s" path="res://Assets/icon.svg" id="1_3666c"]
+[ext_resource type="Texture2D" uid="uid://dog5acb7ix0bi" path="res://Assets/Map/Levels/Level_1/Objects/lamp.png" id="1_3666c"]
 [ext_resource type="Texture2D" uid="uid://ew11r3whj6ev" path="res://Assets/Effects/Light/circle.png" id="2_wa8d0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wa8d0"]
+atlas = ExtResource("1_3666c")
+region = Rect2(0, 0, 19, 17)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ljofa"]
+atlas = ExtResource("1_3666c")
+region = Rect2(19, 0, 19, 17)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h3hnn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wa8d0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ljofa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Torch" type="StaticBody2D"]
 scale = Vector2(0.5, 0.5)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_3666c")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_h3hnn")
+autoplay = "default"
+frame_progress = 0.55755
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
 color = Color(1, 0.643137, 0.196078, 1)
