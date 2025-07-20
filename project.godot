@@ -24,6 +24,11 @@ config/icon="res://Assets/icon.svg"
 DialogueManager="*res://Singleton/DialogueManager/dialogue_manager.gd"
 Textbox="*res://UI/Textbox/textbox.tscn"
 
+[display]
+
+window/size/resizable=false
+window/stretch/mode="viewport"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
