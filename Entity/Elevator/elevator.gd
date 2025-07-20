@@ -32,6 +32,7 @@ func _on_body_entered(body: Node2D) -> void:
 
 func _close_door() -> void:
 	door_closing = true
+	audio_stream_player_2d.stop()
 	self.z_index = 1
 	animation_player.play_backwards("door_open")
 	await animation_player.animation_finished
@@ -52,3 +53,5 @@ func _transition() -> void:
 func playSound() -> void:
 	if !door_closing:
 		audio_stream_player_2d.play()
+	else:
+		$AudioStreamPlayer2D2.play()
