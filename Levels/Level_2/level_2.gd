@@ -9,6 +9,7 @@ func _ready() -> void:
 	camera.limit_top = 0
 	camera.limit_bottom = 1488
 	camera.limit_right = 1680
+	$TheMoon.visible = false
 
 func _on_level_exit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):

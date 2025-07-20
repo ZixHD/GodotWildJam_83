@@ -1736,7 +1736,6 @@ z_index = -1
 position = Vector2(1062, 876)
 
 [node name="TheMoon" parent="." instance=ExtResource("11_l5wlt")]
-position = Vector2(1171, 51)
-metadata/_edit_lock_ = true
+position = Vector2(1617, 95)
 
 [connection signal="body_entered" from="Level_Exit" to="." method="_on_level_exit_body_entered"]
