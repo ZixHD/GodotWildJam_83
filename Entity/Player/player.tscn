@@ -477,6 +477,7 @@ position = Vector2(-75, 0)
 position = Vector2(75, 0)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+z_index = 1
 position = Vector2(-75, -3.90798e-14)
 rotation = 1.5708
 scale = Vector2(0.1, 0.1)
@@ -486,7 +487,6 @@ shadow_enabled = true
 texture = ExtResource("4_viyt1")
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]

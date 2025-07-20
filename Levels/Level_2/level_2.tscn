@@ -1626,13 +1626,13 @@ shape = SubResource("RectangleShape2D_0qv2m")
 position = Vector2(1412, 918)
 
 [node name="FireGhoul2" parent="Enemies" instance=ExtResource("3_orgcb")]
-position = Vector2(980, 314)
+position = Vector2(967, 297)
 
 [node name="FireGhoul3" parent="Enemies" instance=ExtResource("3_orgcb")]
 position = Vector2(56, 112)
 
 [node name="SlimeGhoul" parent="Enemies" instance=ExtResource("4_i42ti")]
-position = Vector2(1018, 1213)
+position = Vector2(997, 1218)
 
 [node name="SlimeGhoul2" parent="Enemies" instance=ExtResource("4_i42ti")]
 position = Vector2(200, 1363)
@@ -1647,7 +1647,7 @@ position = Vector2(1546, 578)
 position = Vector2(83, 627)
 
 [node name="FireGhoul5" parent="Enemies" instance=ExtResource("3_orgcb")]
-position = Vector2(442, 1058)
+position = Vector2(444, 1070)
 
 [node name="Player" parent="." instance=ExtResource("2_r0dct")]
 position = Vector2(1454, 1337)
@@ -1670,6 +1670,7 @@ energy = 2.0
 shadow_enabled = true
 texture = ExtResource("9_80bhs")
 texture_scale = 1.5
+metadata/_edit_lock_ = true
 
 [node name="Chandelier2" parent="." instance=ExtResource("8_eskua")]
 position = Vector2(1022, 480)

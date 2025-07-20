@@ -939,7 +939,7 @@ position = Vector2(538, 195)
 position = Vector2(1437, 358)
 
 [node name="SlimeGhoul" parent="Enemies" instance=ExtResource("7_7bnrq")]
-position = Vector2(564, 497)
+position = Vector2(558, 501)
 
 [node name="Merry" parent="Enemies" instance=ExtResource("7_fhktt")]
 position = Vector2(1207, 53)
@@ -948,7 +948,7 @@ position = Vector2(1207, 53)
 position = Vector2(112, 342)
 
 [node name="SlimeGhoul2" parent="Enemies" instance=ExtResource("7_7bnrq")]
-position = Vector2(1058, 494)
+position = Vector2(1058, 502)
 
 [node name="Objects" type="Node" parent="."]
 
