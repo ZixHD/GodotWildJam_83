@@ -1001,9 +1001,7 @@ energy = 0.5
 blend_mode = 1
 
 [node name="Player" parent="." instance=ExtResource("2_ya7ph")]
-
 position = Vector2(1741, 359)
-
 
 [connection signal="body_entered" from="Spikes" to="." method="_on_spikes_body_entered"]
 
