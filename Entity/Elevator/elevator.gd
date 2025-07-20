@@ -6,11 +6,12 @@ extends Area2D
 @onready var player_position: Marker2D = $PlayerPosition
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
+
 var door_closing = false
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.on_level_1_end()
+		body.on_level_1_end(player_position.global_position)
 #		play the animation of the elevator closing
 #		on animation_finished emit the signal and call GameManager.next_scene
 		animation_player.play("door_open")

@@ -13,7 +13,7 @@ dest_files=["res://.godot/imported/bossWalk.mp3-0a0dac38e7a6a46fb28bc75fa77e2f1b
 [params]
 
 loop=false
-loop_offset=0
-bpm=0
+loop_offset=0.0
+bpm=0.0
 beat_count=0
 bar_beats=4

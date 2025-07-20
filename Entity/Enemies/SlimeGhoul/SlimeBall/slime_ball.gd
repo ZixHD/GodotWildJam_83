@@ -42,7 +42,7 @@ func setup(user: String, target_position: Vector2, start_position: Vector2):
 	sprite_2d.flip_h = true
 	self.user = user
 	collision_layer = 2
-	collision_mask = 1
+	collision_mask = 1 | 4
 	
 func setup_player(user: String, direction: Vector2, start_position: Vector2):
 	self.start_position = start_position
@@ -51,7 +51,7 @@ func setup_player(user: String, direction: Vector2, start_position: Vector2):
 	sprite_2d.flip_h = true
 	self.user = user
 	collision_layer = 1
-	collision_mask = 2
+	collision_mask = 2 | 4
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and user == "Enemy":

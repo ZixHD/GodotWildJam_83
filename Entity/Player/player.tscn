@@ -438,7 +438,6 @@ position = Vector2(-7, 16)
 shape = SubResource("CapsuleShape2D_ia1lp")
 
 [node name="DustParticlesRunning" type="GPUParticles2D" parent="."]
-z_index = -1
 material = SubResource("CanvasItemMaterial_qb0yx")
 position = Vector2(-85, 54)
 emitting = false

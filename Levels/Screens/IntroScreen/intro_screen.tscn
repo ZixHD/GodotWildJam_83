@@ -1,0 +1,141 @@
+[gd_scene load_steps=11 format=3 uid="uid://bwdrnod7grglo"]
+
+[ext_resource type="Script" uid="uid://d2jxt7vu6p8n3" path="res://Levels/Screens/IntroScreen/intro_screen.gd" id="1_1gt8d"]
+[ext_resource type="Texture2D" uid="uid://dxjtliwxw3b2t" path="res://Assets/MenuScreen/IntroScreen/Dan_1.jpg" id="1_5l21x"]
+[ext_resource type="Texture2D" uid="uid://bbmo03psrwi0b" path="res://Assets/MenuScreen/IntroScreen/Dan_2.jpg" id="2_md8pw"]
+[ext_resource type="Texture2D" uid="uid://coqulkeosdbdp" path="res://Assets/MenuScreen/IntroScreen/Dan_3.jpg" id="4_nrmhr"]
+[ext_resource type="PackedScene" uid="uid://d2ykbvnjacn2i" path="res://UI/Textbox/textbox.tscn" id="5_nrmhr"]
+
+[sub_resource type="Animation" id="Animation_absey"]
+resource_name = "Intro_0"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Picture_1:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.93333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_nrmhr"]
+resource_name = "Intro_1"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Picture_2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_iuums"]
+resource_name = "Intro_2"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Picture_3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tutex"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Picture_2:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Picture_3:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iuums"]
+_data = {
+&"Intro_0": SubResource("Animation_absey"),
+&"Intro_1": SubResource("Animation_nrmhr"),
+&"Intro_2": SubResource("Animation_iuums"),
+&"RESET": SubResource("Animation_tutex")
+}
+
+[node name="IntroScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_1gt8d")
+
+[node name="Picture_3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 1152.0
+offset_bottom = 651.0
+texture = ExtResource("4_nrmhr")
+expand_mode = 1
+
+[node name="Picture_2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_right = 1149.0
+offset_bottom = 649.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("2_md8pw")
+expand_mode = 1
+
+[node name="Picture_1" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 3.0
+offset_right = 3294.0
+offset_bottom = 1857.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("1_5l21x")
+expand_mode = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_iuums")
+}
+
+[node name="Textbox" parent="." instance=ExtResource("5_nrmhr")]

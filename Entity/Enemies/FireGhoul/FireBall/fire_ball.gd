@@ -19,7 +19,7 @@ func _process(delta: float) -> void:
 		
 	
 func setup(target_position: Vector2, user: String):
-	var direction =  target_position
+	var direction =  target_position - global_position
 	direction.y = 0
 	direction = direction.normalized()
 	velocity = direction * speed
@@ -27,7 +27,7 @@ func setup(target_position: Vector2, user: String):
 	sprite_2d.flip_h = true
 	self.user = user
 	collision_layer = 2
-	collision_mask = 1
+	collision_mask = 1 | 4
 		
 func setup_player(user: String, direction: Vector2):
 	self.user = user
@@ -35,7 +35,7 @@ func setup_player(user: String, direction: Vector2):
 	rotation = direction.angle()
 	sprite_2d.flip_h = true
 	collision_layer = 1
-	collision_mask = 2
+	collision_mask = 2 | 4
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player") and user == "Enemy":

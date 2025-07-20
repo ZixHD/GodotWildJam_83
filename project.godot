@@ -23,6 +23,8 @@ config/icon="res://Assets/icon.svg"
 
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 GameManager="*res://Singleton/GameManager/game_manager.gd"
+DialogueManager="*res://Singleton/DialogueManager/dialogue_manager.gd"
+Textbox="*res://UI/Textbox/textbox.tscn"
 
 [editor_plugins]
 

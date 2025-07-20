@@ -161,15 +161,14 @@ func _ready() -> void:
 	
 	
 
-func on_level_1_end() -> void:
+func on_level_1_end(player_position: Vector2) -> void:
 	const CANVAS_LAYER = preload("res://Levels/Screens/EndCutscene/end_cutscene.tscn")
 	var end_cutscene = CANVAS_LAYER.instantiate()
 	add_child(end_cutscene)
 	var tween = create_tween()
 	level_end_flag = true
 	player_state = state.RUNNING
-	var target_position = position + Vector2(90, 0)
-	tween.tween_property(self, "position", target_position, 0.5)
+	tween.tween_property(self, "position",  player_position, 0.5)
 	await tween.finished
 	player_state = state.IDLE
 
@@ -183,7 +182,7 @@ func on_level_2_end() -> void:
 	var target_position = position + Vector2(300, 0)
 	tween.tween_property(self, "position", target_position, 0.7)
 
-func on_level_3_end() -> void:
+func on_level_3_end(player_position: Vector2) -> void:
 	const CANVAS_LAYER = preload("res://Levels/Screens/EndCutscene/end_cutscene.tscn")
 	var end_cutscene = CANVAS_LAYER.instantiate()
 	add_child(end_cutscene)
@@ -191,6 +190,10 @@ func on_level_3_end() -> void:
 	get_tree().current_scene.add_child(camera_2d)
 	camera_2d.global_position = self.global_position
 	level_end_flag = true
+	var tween = create_tween()
+	player_state = state.RUNNING
+	tween.tween_property(self, "position",  player_position, 0.5)
+	await tween.finished
 	player_state = state.IDLE
 	await get_tree().create_timer(0.5).timeout
 	_camera_move()
@@ -369,7 +372,7 @@ func _spawn_jump_dust() -> void:
 
 func _attack() -> void:
 	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack and can_throw:
-		player_ghost_state = ghost_state.SLIME
+		player_ghost_state = ghost_state.FIRE
 		match(player_ghost_state):
 			null:
 				_camera_shoot()
@@ -484,14 +487,12 @@ func _attack_change(power_up: String) -> void:
 		"Slime":
 			player_ghost_state = ghost_state.SLIME
 
-
 func _on_merry_hibtox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
 		body._on_hit()
 	
 func _on_throw() -> void:
 	can_throw = true
-
 #Sounds
 func playSound() -> void:
 	if player_state == state.DASHING:

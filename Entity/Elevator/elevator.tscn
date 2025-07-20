@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://r4djqnqscg6b" path="res://Assets/Sounds/soundeffects/elevator.mp3" id="3_ux8cn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vx0lj"]
-size = Vector2(112, 102)
+size = Vector2(151.333, 102)
 
 [sub_resource type="Animation" id="Animation_f73sr"]
 length = 0.7
@@ -87,7 +87,7 @@ metadata/_aseprite_wizard_config_ = {
 metadata/_aseprite_wizard_source_file_hash_ = "0807bcf42ed72fa224413a323b4d2bdc"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-4, 1)
+position = Vector2(-20.3333, 1)
 shape = SubResource("RectangleShape2D_vx0lj")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
