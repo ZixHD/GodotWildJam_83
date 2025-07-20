@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=4 uid="uid://d4co2bteh6s3d"]
+[gd_scene load_steps=36 format=4 uid="uid://d4co2bteh6s3d"]
 
 [ext_resource type="Script" uid="uid://nl1dang1il2w" path="res://Levels/Level_2/level_2.gd" id="1_0qv2m"]
 [ext_resource type="Texture2D" uid="uid://pf7u8chnohw5" path="res://Assets/Map/Levels/Level_2/leve2.png" id="1_64t27"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ew11r3whj6ev" path="res://Assets/Effects/Light/circle.png" id="9_80bhs"]
 [ext_resource type="PackedScene" uid="uid://dgvu04rsb6csp" path="res://Entity/Objects/torch.tscn" id="10_jy8j1"]
 [ext_resource type="PackedScene" uid="uid://vjjlnmq22sin" path="res://Entity/Objects/the_moon.tscn" id="11_l5wlt"]
+[ext_resource type="PackedScene" uid="uid://dektuktqh6ru7" path="res://Entity/Elevator/elevator.tscn" id="12_2l37n"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_80bhs"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1644,7 +1645,7 @@ position = Vector2(1546, 578)
 position = Vector2(83, 627)
 
 [node name="Player" parent="." instance=ExtResource("2_r0dct")]
-position = Vector2(1440, 298)
+position = Vector2(1537, 1345)
 
 [node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_i42ti")
@@ -1738,4 +1739,8 @@ position = Vector2(1062, 876)
 [node name="TheMoon" parent="." instance=ExtResource("11_l5wlt")]
 position = Vector2(1617, 95)
 
+[node name="Elevator" parent="." instance=ExtResource("12_2l37n")]
+position = Vector2(1537, 1316)
+
 [connection signal="body_entered" from="Level_Exit" to="." method="_on_level_exit_body_entered"]
+[connection signal="body_entered" from="Elevator" to="." method="_on_elevator_body_entered"]

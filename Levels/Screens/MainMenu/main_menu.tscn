@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://bprbh11yu18tg"]
+[gd_scene load_steps=7 format=3 uid="uid://bprbh11yu18tg"]
 
 [ext_resource type="Script" uid="uid://cbmead8incmxl" path="res://Levels/Screens/MainMenu/main_menu.gd" id="1_ytv16"]
 [ext_resource type="Texture2D" uid="uid://xfi0uwxraj85" path="res://Assets/MenuScreen/EndScreen.jpg" id="2_8ekdx"]
 [ext_resource type="FontFile" uid="uid://bq15wrhiwgaxh" path="res://Assets/Font/Jakobs Handwriting 2.ttf" id="2_ul3hv"]
 [ext_resource type="FontFile" uid="uid://bsr15gs6gpe3h" path="res://Assets/Font/LowresPixel-Regular.otf" id="3_x3l10"]
+[ext_resource type="AudioStream" uid="uid://xejd0ahe3ckk" path="res://Assets/Music/Menu_Theme.mp3" id="5_x3l10"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qpl8e"]
 font = ExtResource("2_ul3hv")
@@ -55,6 +56,11 @@ theme_override_fonts/font = ExtResource("3_x3l10")
 theme_override_font_sizes/font_size = 18
 text = "Quit
 "
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_x3l10")
+volume_db = 15.0
+parameters/looping = true
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_quit_pressed"]

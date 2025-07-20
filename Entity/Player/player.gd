@@ -127,9 +127,14 @@ func _update_ghost_animation() -> void:
 			animation_player.play("fire_attack")
 		ghost_state.SLIME:	
 			animation_player.play("slime_attack")
-			
+
+func set_level_end() -> void:
+	print("ovde", level_end_flag)
+	level_end_flag = true
+		
 func _ready() -> void:
 	
+	player_ghost_state = ghost_state.CAMERA
 	game_manager = get_tree().get_root().get_node("Gm")
 	
 	jump_buffer_timer = Timer.new();

@@ -1,8 +1,12 @@
 extends Node2D
 
 @onready var background_music: AudioStreamPlayer = $BackgroundMusic
+@onready var animation_player: AnimationPlayer = $Elevator/AnimationPlayer
+
 
 func _ready() -> void:
+	animation_player.play("door_open")
+	
 	$BackgroundMusic.play()
 	var camera = $Player/Camera2D
 	camera.limit_left = 0
@@ -14,20 +18,26 @@ func _ready() -> void:
 func _on_level_exit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
-		#if enemies.size() == 0:
+		if enemies.size() == 0:
 			# No enemies left, allow exit
-		body.on_level_2_end()
-		var end_timer = Timer.new()
-		end_timer.wait_time = 1.2
-		end_timer.one_shot = true
-		end_timer.autostart = true
-		add_child(end_timer)
-		end_timer.start()
-		end_timer.timeout.connect(_transition)
-	#else:
-			#print("Enemies still remain! Defeat them before proceeding.")
+			body.on_level_2_end()
+			var end_timer = Timer.new()
+			end_timer.wait_time = 1.2
+			end_timer.one_shot = true
+			end_timer.autostart = true
+			add_child(end_timer)
+			end_timer.start()
+			end_timer.timeout.connect(_transition)
+	else:
+			print("Enemies still remain! Defeat them before proceeding.")
 
 func _transition() -> void:
 	var game_manager = get_tree().get_root().get_node("Gm")
 	game_manager.load_transition()
 		
+
+
+func _on_elevator_body_entered(body: Node2D) -> void:
+	body.set_level_end()
+	await get_tree().create_timer(2).timeout
+	body.set_level_end()
