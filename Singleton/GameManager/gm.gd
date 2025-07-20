@@ -64,18 +64,17 @@ func load_transition() -> void:
 		print("Level" + str(scene_index - 1) + " node not found!")
 	
 func load_retry_scene() -> void:
-	print('123')
-	#retry_instance = RETRY_SCREEN.instantiate()
-	#add_child(retry_instance)
-	#var root = get_tree().root
-	#var level1 = root.get_node("Level_1")
-	#level1.queue_free()
+	retry_instance = RETRY_SCREEN.instantiate()
+	add_child(retry_instance)
+	var root = get_tree().root
+	var gm = get_tree().get_root().get_node("Gm")
+	var level = gm.get_node("Level_" + str(scene_index - 1))
+	level.queue_free()
 	
 func retry_level() -> void:
 	if retry_instance:
 		retry_instance.queue_free()
-	
-	#self.load_scene(0)
+	self.load_scene(scene_index)
 	
 func load_childroom() -> void:
 	if current_scene_instance:

@@ -5,7 +5,7 @@ extends Area2D
 @onready var player: CharacterBody2D = $"../Player"
 @onready var player_position: Marker2D = $PlayerPosition
 @onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
-
+@onready var audio_stream_player_2d_2: AudioStreamPlayer2D = $AudioStreamPlayer2D2
 
 var door_closing = false
 
@@ -52,6 +52,8 @@ func _transition() -> void:
 
 func playSound() -> void:
 	if !door_closing:
+		print("jedan")
 		audio_stream_player_2d.play()
 	else:
-		$AudioStreamPlayer2D2.play()
+		print("dva")
+		audio_stream_player_2d_2.play()

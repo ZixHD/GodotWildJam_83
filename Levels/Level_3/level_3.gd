@@ -26,8 +26,8 @@ func _ready() -> void:
 	audio_stream_player.play()
 	var camera = $Player/Camera2D
 	camera.limit_left = 0
-	camera.limit_top = 0
-	camera.limit_bottom = 384
+	camera.limit_top = 50
+	camera.limit_bottom = 360
 	camera.limit_right = 1680
 	$TheMoon/Sprite2D.visible = false
 	shake_timer.timeout.connect(trigger_shake)
