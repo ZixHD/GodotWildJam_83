@@ -87,7 +87,8 @@ func _attack() -> void:
 		entity_state = state.ATTACKING
 		const SLIME_BALL = preload("res://Entity/Enemies/SlimeGhoul/SlimeBall/slime_ball.tscn")
 		var slime_ball = SLIME_BALL.instantiate()
-		get_tree().current_scene.add_child(slime_ball)
+		if player:
+			get_tree().current_scene.add_child(slime_ball)
 		slime_ball.global_position = slime_ball_spawn.global_position
 		slime_ball.global_rotation = slime_ball_spawn.global_rotation
 		if player:

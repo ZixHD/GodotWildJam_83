@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bsk34sbnictp6" path="res://Entity/Enemies/SlimeGhoul/slime_ghoul.tscn" id="4_i42ti"]
 [ext_resource type="PackedScene" uid="uid://ddps3cvirlba7" path="res://Entity/Enemies/EnemyGhoul/enemy.tscn" id="5_eskua"]
 [ext_resource type="AudioStream" uid="uid://d1ytgnshkf2ql" path="res://Assets/Music/Ghost_Hunding_Theme.mp3" id="7_i42ti"]
-[ext_resource type="PackedScene" uid="uid://cyn1lctyiwmpo" path="res://Entity/Objects/chandelier.tscn" id="8_eskua"]
+[ext_resource type="PackedScene" uid="uid://jnbptfas6555" path="res://Entity/Objects/chandelier.tscn" id="8_eskua"]
 [ext_resource type="Texture2D" uid="uid://ew11r3whj6ev" path="res://Assets/Effects/Light/circle.png" id="9_80bhs"]
 [ext_resource type="PackedScene" uid="uid://dgvu04rsb6csp" path="res://Entity/Objects/torch.tscn" id="10_jy8j1"]
 [ext_resource type="PackedScene" uid="uid://vjjlnmq22sin" path="res://Entity/Objects/the_moon.tscn" id="11_l5wlt"]

@@ -238,7 +238,7 @@ func _moving(delta: float) -> void:
 		if not coyote_jump_timer.is_stopped():
 			coyote_jump_timer.stop()
 	
-	wall_jump(delta)	
+	#wall_jump(delta)	
 	
 	if(velocity.x != 0):
 		idle_direction = velocity.x > 0
@@ -372,7 +372,7 @@ func _spawn_jump_dust() -> void:
 
 func _attack() -> void:
 	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack and can_throw:
-		player_ghost_state = ghost_state.FIRE
+		#player_ghost_state = ghost_state.FIRE
 		match(player_ghost_state):
 			null:
 				_camera_shoot()
