@@ -9,4 +9,4 @@ func _ready() -> void:
 	
 func _transition() -> void:
 	var game_manager = get_tree().get_root().get_node("Gm")
-	game_manager.next_scene()
+	Gm.next_scene()
