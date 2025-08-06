@@ -135,7 +135,7 @@ func set_level_end() -> void:
 		
 func _ready() -> void:
 	
-	player_ghost_state = ghost_state.CAMERA
+	on_power_expired()
 	game_manager = get_tree().get_root().get_node("Gm")
 	
 	jump_buffer_timer = Timer.new();
@@ -193,7 +193,7 @@ func on_level_2_end() -> void:
 func on_level_3_end(player_position: Vector2) -> void:
 	remove_child(camera_2d)
 	#get_tree().current_scene.add_child(camera_2d)
-	var level_3 = get_node("/root/Gm/Level_3")
+	var level_3 = get_node("/root/Level_3")
 	level_3.add_child(camera_2d)
 	camera_2d.global_position = self.global_position
 	level_end_flag = true
