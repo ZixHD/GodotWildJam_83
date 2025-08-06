@@ -11,7 +11,7 @@ const RETRY_SCREEN = preload("res://Levels/Screens/RetryScreen/retry_screen.tscn
 const TRANSITION_SCREEN = preload("res://Levels/Screens/TransitionScreen/transition_screen.tscn")
 const LEVEL_F = preload("res://Levels/ChildRoom/child_room.tscn")
 const WILD_CARD = preload("res://UI/Wildcard/wild_card.tscn")
-const POWER_UP_TIMER = 10.0
+
 
 var score_multiplier = 0
 var level_timer = 0
@@ -20,9 +20,9 @@ var score = 0
 var scenes: Array[PackedScene] = [
 	WILD_CARD, MAIN_MENU, INTRO_SCREEN, LEVEL_1, LEVEL_2, LEVEL_3, LEVEL_F
 ]
-var current_scene_instance: Node = null
-var transition_instance: Node = null
-var retry_instance: Node = null
+var current_scene_instance = null
+var transition_instance = null
+var retry_instance = null
 var child_room = null
 signal next_level
 signal retry
@@ -35,7 +35,7 @@ func load_scene(index: int) -> void:
 	if current_scene_instance:
 		current_scene_instance.queue_free()
 	current_scene_instance = scenes[index].instantiate()
-	add_child(current_scene_instance)
+	get_tree().change_scene_to_packed(current_scene_instance)
 	if index > 3:
 		Textbox.set_font()
 	
@@ -48,7 +48,7 @@ func next_scene() -> void:
 	
 func load_retry_scene() -> void:
 	retry_instance = RETRY_SCREEN.instantiate()
-	add_child(retry_instance)
+	get_tree().change_scene_to_packed(retry_instance)
 	var root = get_tree().root
 	var gm = get_tree().get_root().get_node("Gm")
 	var level = gm.get_node("Level_" + str(scene_index - 2))
@@ -63,11 +63,11 @@ func load_childroom() -> void:
 	if current_scene_instance:
 		current_scene_instance.queue_free()
 	child_room = LEVEL_F.instantiate() 
-	add_child(child_room)
+	get_tree().change_scene_to_packed(child_room)
 
 func load_credits() -> void:
 	if child_room:
 		child_room.queue_free()
 	const END_CREDITS = preload("res://Levels/Screens/EndCredits/end_credits.tscn")
 	var end = END_CREDITS.instantiate()
-	add_child(end)
+	get_tree().change_scene_to_packed(end)

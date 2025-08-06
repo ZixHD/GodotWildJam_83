@@ -1,8 +1,8 @@
 extends Node2D
 
 @onready var background_music: AudioStreamPlayer = $BackgroundMusic
-
-
+@onready var player: CharacterBody2D = $Player
+@onready var exit_block: StaticBody2D = $ExitBlock
 
 func _ready() -> void:
 	
@@ -13,12 +13,14 @@ func _ready() -> void:
 	camera.limit_bottom = 1488
 	camera.limit_right = 1680
 	$TheMoon.visible = false
+	exit_block.visible = true;
 
 func _on_level_exit_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		var enemies = get_tree().get_nodes_in_group("Enemy")
 		if enemies.size() == 0:
 			# No enemies left, allow exit
+			exit_block.visible = false;
 			body.on_level_2_end()
 			var end_timer = Timer.new()
 			end_timer.wait_time = 1.2
@@ -33,5 +35,12 @@ func _on_level_exit_body_entered(body: Node2D) -> void:
 func _transition() -> void:
 	var game_manager = get_tree().get_root().get_node("Gm")
 	game_manager.next_scene()
+
+
+
+func _on_exit_block_2_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Player"):
 		
+		print("collidiing")
 	
+	pass # Replace with function body.

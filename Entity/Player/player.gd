@@ -52,6 +52,7 @@ const JUMP_VELOCITY = -650.0
 const GRAVITY = 1500.0;
 const FALL_GRAVITY = 2300;
 const MAX_AIR_DASH = 1;
+const POWER_UP_TIMER = 10.0
 
 #coyote-time
 var jump_buffer_timer: Timer;
@@ -154,7 +155,7 @@ func _ready() -> void:
 	running_dust_timer.timeout.connect(_spawn_dust)
 	
 	
-	power_up_timer.wait_time = game_manager.POWER_UP_TIMER
+	power_up_timer.wait_time = POWER_UP_TIMER
 	power_up_timer.one_shot = true
 	power_up_timer.autostart = false;
 	power_up_timer.timeout.connect(on_power_expired)
