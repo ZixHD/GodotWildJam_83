@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=4 uid="uid://d4co2bteh6s3d"]
+[gd_scene load_steps=41 format=4 uid="uid://d4co2bteh6s3d"]
 
 [ext_resource type="Script" uid="uid://nl1dang1il2w" path="res://Levels/Level_2/level_2.gd" id="1_0qv2m"]
 [ext_resource type="Texture2D" uid="uid://pf7u8chnohw5" path="res://Assets/Map/Levels/Level_2/leve2.png" id="1_64t27"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://dgvu04rsb6csp" path="res://Entity/Objects/torch.tscn" id="10_jy8j1"]
 [ext_resource type="PackedScene" uid="uid://vjjlnmq22sin" path="res://Entity/Objects/the_moon.tscn" id="11_l5wlt"]
 [ext_resource type="PackedScene" uid="uid://bexvjbmewccgd" path="res://UI/Wildcard/elevatorv_2.tscn" id="12_2l37n"]
+[ext_resource type="PackedScene" uid="uid://c80anh3c08bo" path="res://Levels/Screens/EndCutscene/end_cutscene.tscn" id="13_7u710"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_80bhs"]
 polygon = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -1608,6 +1609,67 @@ size = Vector2(174.667, 135.667)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2l37n"]
 size = Vector2(103.5, 367.5)
 
+[sub_resource type="Animation" id="Animation_7u710"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 579)]
+}
+
+[sub_resource type="Animation" id="Animation_01qpe"]
+resource_name = "slide_out"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect3:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.397691),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 2), Vector2(0, -70)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect4:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.397691),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 579), Vector2(0, 650)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xsrd2"]
+_data = {
+&"RESET": SubResource("Animation_7u710"),
+&"slide_out": SubResource("Animation_01qpe")
+}
+
 [node name="Level_2" type="Node2D"]
 script = ExtResource("1_0qv2m")
 
@@ -1740,7 +1802,7 @@ position = Vector2(1.33333, -11.3333)
 scale = Vector2(2, 2)
 
 [node name="Player" parent="." instance=ExtResource("2_r0dct")]
-position = Vector2(1537, 1345)
+position = Vector2(1541, 1347)
 
 [node name="ExitBlock" type="StaticBody2D" parent="."]
 position = Vector2(1713, 239)
@@ -1748,6 +1810,35 @@ position = Vector2(1713, 239)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ExitBlock"]
 position = Vector2(-6, -52.25)
 shape = SubResource("RectangleShape2D_2l37n")
+
+[node name="EndCutscene" parent="." instance=ExtResource("13_7u710")]
+script = null
+
+[node name="ColorRect3" type="ColorRect" parent="EndCutscene"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 2.0
+offset_bottom = 71.0
+grow_horizontal = 2
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect4" type="ColorRect" parent="EndCutscene"]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -69.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="EndCutscene"]
+libraries = {
+&"": SubResource("AnimationLibrary_xsrd2")
+}
 
 [connection signal="body_entered" from="Level_Exit" to="." method="_on_level_exit_body_entered"]
 

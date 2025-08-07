@@ -28,6 +28,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 648)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
 
 [sub_resource type="Animation" id="Animation_v1gp1"]
 resource_name = "slide_in"
@@ -56,6 +68,18 @@ tracks/1/keys = {
 "update": 0,
 "values": [Vector2(0, 648), Vector2(0, 579)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ColorRect3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 2)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_occw4"]
 _data = {
@@ -72,6 +96,7 @@ anchor_right = 1.0
 offset_top = -69.0
 grow_horizontal = 2
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 anchors_preset = 12
@@ -82,6 +107,7 @@ offset_bottom = 69.0
 grow_horizontal = 2
 grow_vertical = 0
 color = Color(0, 0, 0, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

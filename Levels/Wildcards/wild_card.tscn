@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://kpv06chko1sk"]
 
-[ext_resource type="Script" uid="uid://chew87d0xb83b" path="res://UI/Wildcard/wild_card.gd" id="1_ar3fr"]
+[ext_resource type="Script" uid="uid://chew87d0xb83b" path="res://Levels/Wildcards/wild_card.gd" id="1_ar3fr"]
 [ext_resource type="Texture2D" uid="uid://xfi0uwxraj85" path="res://Assets/MenuScreen/EndScreen.jpg" id="2_08e6m"]
 [ext_resource type="Texture2D" uid="uid://dachpxqd0inkv" path="res://Assets/Wildcards/83-Consume.png" id="3_0j7ek"]
 [ext_resource type="Texture2D" uid="uid://blrkqr8hks6gd" path="res://Assets/Wildcards/83-All-Cards.png" id="4_d0i2i"]
@@ -23,7 +23,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ar3fr"]
 resource_name = "fade_to_black"
-length = 4.0
+length = 7.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -31,10 +31,10 @@ tracks/0/path = NodePath(".:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.466667, 2.1, 3.93333),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0.6, 2.26667, 5.53333, 6.96667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
+"values": [Color(0, 0, 0, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(0, 0, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0j7ek"]

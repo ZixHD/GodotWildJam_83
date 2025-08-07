@@ -131,7 +131,7 @@ func _update_ghost_animation() -> void:
 
 func set_level_end() -> void:
 	print("ovde", level_end_flag)
-	level_end_flag = true
+	level_end_flag = !level_end_flag
 		
 func _ready() -> void:
 	

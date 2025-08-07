@@ -10,8 +10,7 @@ const MAIN_MENU = preload("res://Levels/Screens/MainMenu/main_menu.tscn")
 const RETRY_SCREEN = preload("res://Levels/Screens/RetryScreen/retry_screen.tscn")
 const TRANSITION_SCREEN = preload("res://Levels/Screens/TransitionScreen/transition_screen.tscn")
 const LEVEL_F = preload("res://Levels/ChildRoom/child_room.tscn")
-const WILD_CARD = preload("res://UI/Wildcard/wild_card.tscn")
-
+const WILD_CARD = preload("res://Levels/Wildcards/wild_card.tscn")
 
 var score_multiplier = 0
 var level_timer = 0
