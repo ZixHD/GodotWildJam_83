@@ -379,7 +379,6 @@ func _spawn_jump_dust() -> void:
 
 func _attack() -> void:
 	if Input.is_action_just_pressed("click") and player_state != state.DASHING and can_attack and can_throw:
-		#player_ghost_state = ghost_state.FIRE
 		match(player_ghost_state):
 			ghost_state.CAMERA:
 				print(">> Current ghost state:", player_ghost_state)
@@ -388,7 +387,8 @@ func _attack() -> void:
 				print("merri")
 				_merry_attack()
 			ghost_state.FIRE:
-				_fire_attack()
+				#ovde stoji pass jer se vec odnegde poziva ovaj isti fire attack
+				pass
 			ghost_state.SLIME:	
 				_slime_attack()
 		shooting = true
@@ -417,6 +417,7 @@ func _merry_attack() -> void:
 		merry_collision.global_position.x = self.global_position.x - 42.0
 
 func _fire_attack() -> void:
+	print("ovo se 2 puta javlja")
 	if !is_on_floor():
 		can_attack = false
 	const FIRE_BALL = preload("res://Entity/Enemies/FireGhoul/FireBall/fire_ball.tscn")
@@ -491,6 +492,7 @@ func _attack_change(power_up: String) -> void:
 		"Merry":
 			player_ghost_state = ghost_state.MERRY
 		"Fire":
+			print("usao u fire stance")
 			player_ghost_state = ghost_state.FIRE
 		"Slime":
 			player_ghost_state = ghost_state.SLIME
